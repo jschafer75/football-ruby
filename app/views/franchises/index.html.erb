@@ -1,0 +1,21 @@
+<h1>Available Franchises</h1>
+ 
+<table>
+  <tr>
+    <th>City</th>
+    <th>Mascot</th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
+  <% @franchises.each do |franchise| %>
+    <tr>
+      <td><%= franchise.city %></td>
+      <td><%= franchise.mascot %></td>
+      <td>Play</td>
+      <td><%= link_to 'Show', franchise_path(franchise) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Create New Franchise', new_franchise_path %>

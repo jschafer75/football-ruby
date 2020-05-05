@@ -1,0 +1,32 @@
+<h1>Create a Franchise</h1>
+
+<%= form_with scope: :franchise, url: franchises_path, local: true do |form| %>
+
+  <% if @franchise.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@franchise.errors.count, "error") %> prohibited
+        this franchise from being saved:
+      </h2>
+      <ul>
+        <% @franchise.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :city %><br>
+    <%= form.text_field :city %>
+  </p>
+ 
+  <p>
+    <%= form.label :mascot %><br>
+    <%= form.text_field :mascot %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
