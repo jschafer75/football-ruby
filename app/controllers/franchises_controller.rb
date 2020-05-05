@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FranchisesController < ApplicationController
   def new
     @franchise = Franchise.new
@@ -5,7 +7,7 @@ class FranchisesController < ApplicationController
 
   def create
     @franchise = Franchise.new(franchise_params)
- 
+
     if @franchise.save
       redirect_to @franchise
     else
@@ -21,10 +23,10 @@ class FranchisesController < ApplicationController
     @franchise = Franchise.find(params[:id])
   end
 
-  def delete
-  end
+  def delete; end
 
-private
+  private
+
   def franchise_params
     params.require(:franchise).permit(:city, :mascot)
   end

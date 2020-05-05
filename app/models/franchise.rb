@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Franchise < ApplicationRecord
   validates :city, presence: true,
                    length: { minimum: 2 }
