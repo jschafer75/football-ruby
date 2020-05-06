@@ -6,6 +6,7 @@
     <th>Mascot</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
  
   <% @franchises.each do |franchise| %>
@@ -14,6 +15,10 @@
       <td><%= franchise.mascot %></td>
       <td>Play</td>
       <td><%= link_to 'Show', franchise_path(franchise) %></td>
+      <td><%= link_to 'Edit', edit_franchise_path(franchise) %></td>
+      <td><%= link_to 'Destroy', franchise_path(franchise),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>

@@ -15,6 +15,10 @@ class FranchisesController < ApplicationController
     end
   end
 
+  def edit
+    @franchise = Franchise.find(params[:id])
+  end
+
   def index
     @franchises = Franchise.all
   end
@@ -23,7 +27,22 @@ class FranchisesController < ApplicationController
     @franchise = Franchise.find(params[:id])
   end
 
-  def delete; end
+  def update
+    @franchise = Franchise.find(params[:id])
+
+    if @franchise.update(franchise_params)
+      redirect_to @franchise
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @franchise = Franchise.find(params[:id])
+    @franchise.destroy
+
+    redirect_to franchises_path
+  end
 
   private
 
