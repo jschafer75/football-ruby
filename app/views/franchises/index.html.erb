@@ -1,21 +1,10 @@
-<h1>Available Franchises</h1>
+<h1>Beyond the Gridiron</h1>
+<p>Welcome to the game. Please select a franchise to play.</p>
  
 <table>
-  <tr>
-    <th>City</th>
-    <th>Mascot</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
- 
   <% @franchises.each do |franchise| %>
     <tr>
-      <td><%= franchise.city %></td>
-      <td><%= franchise.mascot %></td>
-      <td>Play</td>
-      <td><%= link_to 'Show', franchise_path(franchise) %></td>
-      <td><%= link_to 'Edit', edit_franchise_path(franchise) %></td>
+      <td><%= link_to "#{franchise.city} #{franchise.mascot}", franchise_path(franchise) %></td>
       <td><%= link_to 'Destroy', franchise_path(franchise),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
@@ -23,4 +12,4 @@
   <% end %>
 </table>
 
-<%= link_to 'Create New Franchise', new_franchise_path %>
+<p><%= link_to 'Create New Franchise', new_franchise_path %></p>

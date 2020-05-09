@@ -1,21 +1,5 @@
-<p>
-  <strong>City:</strong>
-  <%= @franchise.city %>
-</p>
- 
-<p>
-  <strong>Mascot:</strong>
-  <%= @franchise.mascot %>
-</p>
+<h1><%= @franchise.city %> <%= @franchise.mascot %></h1>
 
-<table>
-  <tr>
-    <td>Use this Franchise</td>
-  </tr>
-  <tr>
-    <td><%= link_to 'Edit this Franchise', edit_franchise_path(@franchise) %></td>
-  </tr>
-  <tr>
-    <td><%= link_to 'Return to Franchise List', franchises_path %></td>
-  </tr>
-</table>
+<h2>Coaches</h2>
+<h2>Players</h2>
+<p><%= link_to 'Return to Franchise List', franchises_path %></p>

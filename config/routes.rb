@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  get 'football', to: 'franchises#index'
   
   resources :franchises
   resources :players
