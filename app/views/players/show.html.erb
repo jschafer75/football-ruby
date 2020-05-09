@@ -1,0 +1,21 @@
+<p>
+  <strong>Name:</strong>
+  <%= @player.name %>
+</p>
+ 
+<p>
+  <strong>Position:</strong>
+  <%= @player.position %>
+</p>
+
+<table>
+  <tr>
+    <td>Use this Player</td>
+  </tr>
+  <tr>
+    <td><%= link_to 'Edit this Player', edit_player_path(@player) %></td>
+  </tr>
+  <tr>
+    <td><%= link_to 'Return to Player List', players_path %></td>
+  </tr>
+</table>

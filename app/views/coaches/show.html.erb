@@ -1,0 +1,21 @@
+<p>
+  <strong>Name:</strong>
+  <%= @coach.name %>
+</p>
+ 
+<p>
+  <strong>Role:</strong>
+  <%= @coach.role %>
+</p>
+
+<table>
+  <tr>
+    <td>Use this Coach</td>
+  </tr>
+  <tr>
+    <td><%= link_to 'Edit this Coach', edit_coach_path(@coach) %></td>
+  </tr>
+  <tr>
+    <td><%= link_to 'Return to Coach List', coaches_path %></td>
+  </tr>
+</table>
