@@ -1,0 +1,26 @@
+<h1>Available Coaches</h1>
+ 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Role</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
+  <% @coaches.each do |coach| %>
+    <tr>
+      <td><%= coach.name %></td>
+      <td><%= coach.role %></td>
+      <td>Play</td>
+      <td><%= link_to 'Show', coach_path(coach) %></td>
+      <td><%= link_to 'Edit', edit_coach_path(coach) %></td>
+      <td><%= link_to 'Destroy', coach_path(coach),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Create New Coach', new_coach_path %>
