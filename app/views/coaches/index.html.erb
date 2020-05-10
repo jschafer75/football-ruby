@@ -13,14 +13,14 @@
     <tr>
       <td><%= coach.name %></td>
       <td><%= coach.role %></td>
-      <td>Play</td>
-      <td><%= link_to 'Show', coach_path(coach) %></td>
-      <td><%= link_to 'Edit', edit_coach_path(coach) %></td>
-      <td><%= link_to 'Destroy', coach_path(coach),
+      <td><%= link_to 'Show', franchise_coach_path(@franchise, coach) %></td>
+      <td><%= link_to 'Edit', edit_franchise_coach_path(@franchise, coach) %></td>
+      <td><%= link_to 'Destroy', franchise_coach_path(@franchise, coach),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to 'Create New Coach', new_coach_path %>
+<p><%= link_to 'Create New Coach', new_franchise_coach_path(@franchise) %></p>
+<p><%= link_to 'Back to Franchise', franchise_path(@franchise) %></p>

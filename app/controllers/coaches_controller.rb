@@ -2,28 +2,33 @@
 
 class CoachesController < ApplicationController
   def new
+    @franchise = Franchise.find(params[:franchise_id])
     @coach = Coach.new
   end
 
   def create
+    @franchise = Franchise.find(params[:franchise_id])
     @coach = Coach.new(coach_params)
 
     if @coach.save
-      redirect_to @coach
+      redirect_to [@franchise, @coach]
     else
       render 'new'
     end
   end
 
   def edit
+    @franchise = Franchise.find(params[:franchise_id])
     @coach = Coach.find(params[:id])
   end
 
   def index
+    @franchise = Franchise.find(params[:franchise_id])
     @coaches = Coach.all
   end
 
   def show
+    @franchise = Franchise.find(params[:franchise_id])
     @coach = Coach.find(params[:id])
   end
 
@@ -31,17 +36,18 @@ class CoachesController < ApplicationController
     @coach = Coach.find(params[:id])
 
     if @coach.update(coach_params)
-      redirect_to @coach
+      redirect_to [@franchise, @coach]
     else
       render 'edit'
     end
   end
 
   def destroy
+    @franchise = Franchise.find(params[:franchise_id])
     @coach = Coach.find(params[:id])
     @coach.destroy
 
-    redirect_to coaches_path
+    redirect_to franchise_coaches_path
   end
 
   private

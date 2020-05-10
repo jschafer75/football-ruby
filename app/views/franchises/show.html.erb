@@ -1,5 +1,7 @@
 <h1><%= @franchise.city %> <%= @franchise.mascot %></h1>
 
 <h2>Coaches</h2>
+<p><%= link_to 'Hire a Coach', franchise_coaches_path(@franchise) %></p>
 <h2>Players</h2>
+<p><%= link_to 'Sign a Player', franchise_players_path(@franchise) %></p>
 <p><%= link_to 'Return to Franchise List', franchises_path %></p>

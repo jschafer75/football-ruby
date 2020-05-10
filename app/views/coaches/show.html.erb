@@ -1,21 +1,6 @@
-<p>
-  <strong>Name:</strong>
-  <%= @coach.name %>
-</p>
- 
-<p>
-  <strong>Role:</strong>
-  <%= @coach.role %>
-</p>
+<h1><%= @coach.name %></h1>
+<h2><%= @coach.role %></h2>
 
-<table>
-  <tr>
-    <td>Use this Coach</td>
-  </tr>
-  <tr>
-    <td><%= link_to 'Edit this Coach', edit_coach_path(@coach) %></td>
-  </tr>
-  <tr>
-    <td><%= link_to 'Return to Coach List', coaches_path %></td>
-  </tr>
-</table>
+<p>Hire this Coach</p>
+<p><%= link_to 'Edit this Coach', edit_franchise_coach_path(@franchise, @coach) %></p>
+<p><%= link_to 'Return to Coach List', franchise_coaches_path(@franchise) %></p>

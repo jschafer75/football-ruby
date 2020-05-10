@@ -1,21 +1,6 @@
-<p>
-  <strong>Name:</strong>
-  <%= @player.name %>
-</p>
- 
-<p>
-  <strong>Position:</strong>
-  <%= @player.position %>
-</p>
+<h1><%= @player.name %></h1>
+<h2><%= @player.position %></h2>
 
-<table>
-  <tr>
-    <td>Use this Player</td>
-  </tr>
-  <tr>
-    <td><%= link_to 'Edit this Player', edit_player_path(@player) %></td>
-  </tr>
-  <tr>
-    <td><%= link_to 'Return to Player List', players_path %></td>
-  </tr>
-</table>
+<p>Sign this Player</p>
+<p><%= link_to 'Edit this Player', edit_franchise_player_path(@franchise, @player) %></p>
+<p><%= link_to 'Return to Player List', franchise_players_path(@franchise) %></p>
