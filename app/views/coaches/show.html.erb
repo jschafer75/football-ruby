@@ -1,6 +1,6 @@
 <h1><%= @coach.name %></h1>
-<h2><%= @coach.role %></h2>
+<h2><%= @coach.role %> - <%= display_franchise_name(@coach.franchise) %></h2>
 
-<p>Hire this Coach</p>
+<p><%= link_to 'Hire this Coach', sign_franchise_coach_path(@franchise, @coach) %></p>
 <p><%= link_to 'Edit this Coach', edit_franchise_coach_path(@franchise, @coach) %></p>
 <p><%= link_to 'Return to Coach List', franchise_coaches_path(@franchise) %></p>

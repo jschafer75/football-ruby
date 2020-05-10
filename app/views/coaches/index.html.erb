@@ -4,6 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Role</th>
+    <th>Team</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,7 @@
     <tr>
       <td><%= coach.name %></td>
       <td><%= coach.role %></td>
+      <td><%= display_franchise_name(coach.franchise) %></td>
       <td><%= link_to 'Show', franchise_coach_path(@franchise, coach) %></td>
       <td><%= link_to 'Edit', edit_franchise_coach_path(@franchise, coach) %></td>
       <td><%= link_to 'Destroy', franchise_coach_path(@franchise, coach),

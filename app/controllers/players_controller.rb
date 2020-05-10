@@ -50,6 +50,19 @@ class PlayersController < ApplicationController
     redirect_to players_path
   end
 
+  def sign
+    @franchise = Franchise.find(params[:franchise_id])
+    @player = Player.find(params[:id])
+
+    @player.franchise = @franchise
+
+    if @player.save
+      redirect_to [@franchise, @player]
+    else
+      render 'show'
+    end
+  end
+
   private
 
   def player_params

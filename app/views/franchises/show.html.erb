@@ -1,7 +1,23 @@
 <h1><%= @franchise.city %> <%= @franchise.mascot %></h1>
 
 <h2>Coaches</h2>
+<table>
+  <% @coaches.each do |coach| %>
+    <tr>
+      <td><%= link_to "#{coach.name}", franchise_coach_path(@franchise, coach) %></td>
+      <td><%= coach.role %></td>
+    </tr>
+  <% end %>
+</table>
 <p><%= link_to 'Hire a Coach', franchise_coaches_path(@franchise) %></p>
 <h2>Players</h2>
+<table>
+  <% @players.each do |player| %>
+    <tr>
+      <td><%= link_to "#{player.name}", franchise_player_path(@franchise, player) %></td>
+      <td><%= player.position %></td>
+    </tr>
+  <% end %>
+</table>
 <p><%= link_to 'Sign a Player', franchise_players_path(@franchise) %></p>
 <p><%= link_to 'Return to Franchise List', franchises_path %></p>
