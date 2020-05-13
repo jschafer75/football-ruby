@@ -55,12 +55,19 @@ class CoachesController < ApplicationController
     @coach = Coach.find(params[:id])
 
     @coach.franchise = @franchise
+    @coach.save
 
-    if @coach.save
-      redirect_to [@franchise, @coach]
-    else
-      render 'show'
-    end
+    redirect_to [@franchise, @coach]
+  end
+
+  def release
+    @franchise = Franchise.find(params[:franchise_id])
+    @coach = Coach.find(params[:id])
+
+    @coach.franchise = nil
+    @coach.save
+
+    redirect_to [@franchise, @coach]
   end
 
   private
