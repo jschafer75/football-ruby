@@ -1,6 +1,24 @@
 <h1><%= @player.name %></h1>
 <h2><%= @player.position %>  - <%= display_franchise_name(@player.franchise) %></h2>
 
-<p><%= link_to 'Sign this Player', sign_franchise_player_path(@franchise, @player) %></p>
+<% if @player.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@player.errors.count, "error") %> prohibited
+      this player from being saved:
+    </h2>
+    <ul>
+      <% @player.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @player.franchise == @franchise%>
+  <p><%= link_to 'Release this Player', release_franchise_player_path(@franchise, @player) %></p>
+<% else %>
+  <p><%= link_to 'Sign this Player', sign_franchise_player_path(@franchise, @player) %></p>
+<% end %>
 <p><%= link_to 'Edit this Player', edit_franchise_player_path(@franchise, @player) %></p>
 <p><%= link_to 'Return to Player List', franchise_players_path(@franchise) %></p>

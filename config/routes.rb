@@ -5,11 +5,13 @@ Rails.application.routes.draw do
     resources :players do
       member do
         get 'sign'
+        get 'release'
       end
     end
     resources :coaches do
       member do
         get 'sign'
+        get 'release'
       end
     end
   end

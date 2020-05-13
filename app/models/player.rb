@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Player < ApplicationRecord
-  belongs_to :franchise
+  belongs_to :franchise, optional: true
   validates :name, presence: true,
                    length: { minimum: 2 }
   validates :position, presence: true,
