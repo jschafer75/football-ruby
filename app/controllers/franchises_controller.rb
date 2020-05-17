@@ -25,8 +25,8 @@ class FranchisesController < ApplicationController
 
   def show
     @franchise = Franchise.find(params[:id])
-    @players = @franchise.players
     @coaches = @franchise.coaches
+    @players = @franchise.players
   end
 
   def update

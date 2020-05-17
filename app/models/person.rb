@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class Coach < ApplicationRecord
+class Person < ApplicationRecord
   belongs_to :franchise, optional: true
   validates :name, presence: true,
                    length: { minimum: 2 }
-  validates :role, presence: true,
-                   length: { minimum: 2 }
+  validates :position, presence: true,
+                       length: { minimum: 1 }
 end

@@ -1,0 +1,24 @@
+<h1><%= @person.name %></h1>
+<h2><%= @person.position %>  - <%= display_franchise_name(@person.franchise) %></h2>
+
+<% if @person.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@person.errors.count, "error") %> prohibited
+      this person from being saved:
+    </h2>
+    <ul>
+      <% @person.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @person.franchise == @franchise%>
+  <p><%= link_to "Release this #{@person.role.capitalize}", release_franchise_person_path(@franchise, @person, role: @person.role) %></p>
+<% else %>
+  <p><%= link_to "Sign this #{@person.role.capitalize}", sign_franchise_person_path(@franchise, @person, role: @person.role) %></p>
+<% end %>
+<p><%= link_to "Edit this #{@person.role.capitalize}", edit_franchise_person_path(@franchise, @person, role: @person.role) %></p>
+<p><%= link_to "Return to #{@person.role.capitalize} List", franchise_people_path(@franchise, role: @person.role) %></p>
