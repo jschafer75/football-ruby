@@ -4,20 +4,20 @@
 <table>
   <% @coaches.each do |coach| %>
     <tr>
-      <td><%= link_to "#{coach.name}", franchise_coach_path(@franchise, coach) %></td>
-      <td><%= coach.role %></td>
+      <td><%= link_to "#{coach.name}", franchise_person_path(@franchise, coach) %></td>
+      <td><%= coach.position %></td>
     </tr>
   <% end %>
 </table>
-<p><%= link_to 'Hire a Coach', franchise_coaches_path(@franchise) %></p>
+<p><%= link_to 'Hire a Coach', franchise_people_path(@franchise, role: 'coach') %></p>
 <h2>Players</h2>
 <table>
   <% @players.each do |player| %>
     <tr>
-      <td><%= link_to "#{player.name}", franchise_player_path(@franchise, player) %></td>
+      <td><%= link_to "#{player.name}", franchise_person_path(@franchise, player) %></td>
       <td><%= player.position %></td>
     </tr>
   <% end %>
 </table>
-<p><%= link_to 'Sign a Player', franchise_players_path(@franchise) %></p>
+<p><%= link_to 'Sign a Player', franchise_people_path(@franchise, role: 'player') %></p>
 <p><%= link_to 'Return to Franchise List', franchises_path %></p>

@@ -1,13 +1,13 @@
-<%= form_for([@franchise, @player]) do |form| %>
+<%= form_for([@franchise, @person]) do |form| %>
 
-  <% if @player.errors.any? %>
+  <% if @person.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@player.errors.count, "error") %> prohibited
-        this player from being saved:
+        <%= pluralize(@person.errors.count, "error") %> prohibited
+        this person from being saved:
       </h2>
       <ul>
-        <% @player.errors.full_messages.each do |msg| %>
+        <% @person.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -23,8 +23,10 @@
     <%= form.label :position %><br>
     <%= form.text_field :position %>
   </p>
+
+  <%= form.hidden_field :role, value: @person.role %>
  
   <p>
-    <%= form.submit %>
+    <%= form.submit "Submit" %>
   </p>
 <% end %>

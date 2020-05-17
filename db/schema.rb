@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_05_10_031852) do
 
-  create_table "coaches", force: :cascade do |t|
-    t.string "name"
-    t.string "role"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "franchise_id"
-    t.index ["franchise_id"], name: "index_coaches_on_franchise_id"
-  end
-
   create_table "franchises", force: :cascade do |t|
     t.string "city"
     t.string "mascot"
@@ -28,15 +19,15 @@ ActiveRecord::Schema.define(version: 2020_05_10_031852) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "players", force: :cascade do |t|
+  create_table "people", force: :cascade do |t|
     t.string "name"
     t.string "position"
+    t.string "role", default: "player"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "franchise_id"
-    t.index ["franchise_id"], name: "index_players_on_franchise_id"
+    t.index ["franchise_id"], name: "index_people_on_franchise_id"
   end
 
-  add_foreign_key "coaches", "franchises"
-  add_foreign_key "players", "franchises"
+  add_foreign_key "people", "franchises"
 end
