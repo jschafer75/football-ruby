@@ -25,4 +25,5 @@
 </table>
 
 <p><%= link_to "Create New #{@role.capitalize}", new_franchise_person_path(@franchise, role: @role) %></p>
+<p><%= link_to "Create Random #{@role.capitalize}", generate_random_franchise_people_path(@franchise, role: @role), method: :post %></p>
 <p><%= link_to 'Back to Franchise', franchise_path(@franchise) %></p>

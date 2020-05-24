@@ -7,6 +7,9 @@ Rails.application.routes.draw do
         get 'sign'
         get 'release'
       end
+      collection do
+        post 'generate_random'
+      end
     end
   end
 end
