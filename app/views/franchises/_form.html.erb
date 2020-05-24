@@ -23,6 +23,11 @@
     <%= form.label :mascot %><br>
     <%= form.text_field :mascot %>
   </p>
+
+  <p>
+    <%= form.label :rating %>
+    <%= form.range_field :rating, in: 0..100 %>
+  </p>
  
   <p>
     <%= form.submit %>

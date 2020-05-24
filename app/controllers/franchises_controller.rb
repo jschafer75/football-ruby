@@ -49,6 +49,6 @@ class FranchisesController < ApplicationController
   private
 
   def franchise_params
-    params.require(:franchise).permit(:city, :mascot)
+    params.require(:franchise).permit(:city, :mascot, :rating)
   end
 end
