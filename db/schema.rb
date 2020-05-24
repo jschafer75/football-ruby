@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_10_031852) do
+ActiveRecord::Schema.define(version: 2020_05_24_021510) do
 
   create_table "franchises", force: :cascade do |t|
     t.string "city"
     t.string "mascot"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "rating", default: 70
   end
 
   create_table "people", force: :cascade do |t|

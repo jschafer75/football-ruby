@@ -1,4 +1,4 @@
-<h1><%= @franchise.city %> <%= @franchise.mascot %></h1>
+<h1><%= @franchise.city %> <%= @franchise.mascot %> (<%= @franchise.rating %>)</h1>
 
 <h2>Coaches</h2>
 <table>
@@ -19,5 +19,7 @@
     </tr>
   <% end %>
 </table>
+
+<p><%= link_to 'Edit Franchise', edit_franchise_path %></p>
 <p><%= link_to 'Sign a Player', franchise_people_path(@franchise, role: 'player') %></p>
 <p><%= link_to 'Return to Franchise List', franchises_path %></p>
