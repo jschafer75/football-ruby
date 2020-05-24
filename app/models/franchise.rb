@@ -8,10 +8,10 @@ class Franchise < ApplicationRecord
                      length: { minimum: 2 }
 
   def coaches
-    Person.where(role: 'coach')
+    people.where(role: 'coach')
   end
 
   def players
-    Person.where(role: 'player')
+    people.where(role: 'player')
   end
 end
