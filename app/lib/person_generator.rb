@@ -780,11 +780,11 @@ class PersonGenerator
   POSITIONS = { 'player' => %w[QB RB WR TE OL DL LB S CB K P],
                 'coach' => %w[HC OC DC] }.freeze
 
-  def self.create_person(role)
+  def self.create_person(role, franchise = nil)
     name = "#{FIRST_NAMES.sample} #{LAST_NAMES.sample}"
     position = POSITIONS[role].sample
 
-    Person.new(name: name, position: position, role: role)
+    Person.create(franchise: franchise, name: name, position: position, role: role)
   end
 end
 # rubocop:enable Metrics/ClassLength

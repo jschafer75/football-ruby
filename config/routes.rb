@@ -11,5 +11,8 @@ Rails.application.routes.draw do
         post 'generate_random'
       end
     end
+    member do
+      post 'generate_team'
+    end
   end
 end

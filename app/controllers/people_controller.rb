@@ -58,7 +58,7 @@ class PeopleController < ApplicationController
   def generate_random
     @person = PersonGenerator.create_person(params[:role] || 'player')
 
-    if @person.save
+    if @person.id
       redirect_to [@franchise, @person]
     else
       render 'new'
