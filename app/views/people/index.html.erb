@@ -15,9 +15,9 @@
       <td><%= person.name %></td>
       <td><%= person.position %></td>
       <td><%= display_franchise_name(person.franchise) %></td>
-      <td><%= link_to 'Show', franchise_person_path(@franchise, person) %></td>
-      <td><%= link_to 'Edit', edit_franchise_person_path(@franchise, person) %></td>
-      <td><%= link_to 'Destroy', franchise_person_path(@franchise, person),
+      <td><%= link_to 'Show', franchise_person_path(@franchise, person, role: @role) %></td>
+      <td><%= link_to 'Edit', edit_franchise_person_path(@franchise, person, role: @role) %></td>
+      <td><%= link_to 'Destroy', franchise_person_path(@franchise, person, role: @role),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
     </tr>
