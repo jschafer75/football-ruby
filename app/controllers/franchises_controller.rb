@@ -41,6 +41,10 @@ class FranchisesController < ApplicationController
 
   def destroy
     @franchise = Franchise.find(params[:id])
+    @franchise.people.each do |p|
+      p.franchise = nil
+      p.save
+    end
     @franchise.destroy
 
     redirect_to franchises_path
