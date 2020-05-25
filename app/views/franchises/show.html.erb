@@ -21,5 +21,6 @@
 </table>
 
 <p><%= link_to 'Edit Franchise', edit_franchise_path %></p>
+<p><%= link_to 'Generate Team', generate_team_franchise_path, method: :post %></p>
 <p><%= link_to 'Sign a Player', franchise_people_path(@franchise, role: 'player') %></p>
 <p><%= link_to 'Return to Franchise List', franchises_path %></p>

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FranchisesController < ApplicationController
+  before_action :fetch_franchise
+
   def new
     @franchise = Franchise.new
   end
@@ -15,23 +17,18 @@ class FranchisesController < ApplicationController
     end
   end
 
-  def edit
-    @franchise = Franchise.find(params[:id])
-  end
+  def edit; end
 
   def index
     @franchises = Franchise.all
   end
 
   def show
-    @franchise = Franchise.find(params[:id])
     @coaches = @franchise.coaches
     @players = @franchise.players
   end
 
   def update
-    @franchise = Franchise.find(params[:id])
-
     if @franchise.update(franchise_params)
       redirect_to @franchise
     else
@@ -40,7 +37,6 @@ class FranchisesController < ApplicationController
   end
 
   def destroy
-    @franchise = Franchise.find(params[:id])
     @franchise.people.each do |p|
       p.franchise = nil
       p.save
@@ -50,9 +46,20 @@ class FranchisesController < ApplicationController
     redirect_to franchises_path
   end
 
+  def generate_team
+    @franchise.generate_players
+    @franchise.generate_coaches
+
+    redirect_to @franchise
+  end
+
   private
 
   def franchise_params
     params.require(:franchise).permit(:city, :mascot, :rating)
+  end
+
+  def fetch_franchise
+    @franchise = Franchise.find(params[:id]) if params[:id]
   end
 end
