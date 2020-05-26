@@ -38,7 +38,7 @@ class Franchise < ApplicationRecord
   def generate_players
     PLAYER_DEFAULTS.each_key do |position|
       PLAYER_DEFAULTS[position].times do
-        PersonGenerator.create_person('player', self)
+        PersonGenerator.create_person(role: 'player', franchise: self, position: position)
       end
     end
   end
@@ -46,7 +46,7 @@ class Franchise < ApplicationRecord
   def generate_coaches
     COACH_DEFAULTS.each_key do |position|
       COACH_DEFAULTS[position].times do
-        PersonGenerator.create_person('coach', self)
+        PersonGenerator.create_person(role: 'coach', franchise: self, position: position)
       end
     end
   end
