@@ -8,9 +8,14 @@ class FranchisesController < ApplicationController
   end
 
   def create
+    generate_people = params.require(:franchise).extract!(:generate_people)
     @franchise = Franchise.new(franchise_params)
 
     if @franchise.save
+      if generate_people
+        @franchise.generate_players
+        @franchise.generate_coaches
+      end
       redirect_to @franchise
     else
       render 'new'
@@ -56,7 +61,7 @@ class FranchisesController < ApplicationController
   private
 
   def franchise_params
-    params.require(:franchise).permit(:city, :mascot, :rating)
+    params.require(:franchise).permit(:city, :mascot, :rating, :generate_people)
   end
 
   def fetch_franchise
