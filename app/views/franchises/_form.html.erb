@@ -26,7 +26,12 @@
 
   <p>
     <%= form.label :rating %>
-    <%= form.range_field :rating, in: 0..100 %>
+    <%= form.number_field :rating, in: 0..100 %>
+  </p>
+
+  <p>
+    <%= form.label :generate_people %>
+    <%= form.check_box :generate_people %>
   </p>
  
   <p>
