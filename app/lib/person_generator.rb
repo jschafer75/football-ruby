@@ -780,7 +780,7 @@ class PersonGenerator
   POSITIONS = { 'player' => %w[QB RB WR TE OL DL LB S CB K P],
                 'coach' => %w[HC OC DC] }.freeze
 
-  def self.create_person(role: 'player', franchise: nil, position: nil)
+  def self.create_person(role = 'player', franchise = nil, position = nil)
     name = "#{FIRST_NAMES.sample} #{LAST_NAMES.sample}"
     position ||= POSITIONS[role].sample
 
