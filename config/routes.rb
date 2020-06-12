@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     end
     member do
       post 'generate_team'
+      get 'setup_game'
+      post 'play_game'
     end
   end
 end
