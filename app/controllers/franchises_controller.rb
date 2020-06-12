@@ -58,6 +58,14 @@ class FranchisesController < ApplicationController
     redirect_to @franchise
   end
 
+  def setup_game
+    render 'setup_game'
+  end
+
+  def play_game
+    render 'game_results'
+  end
+
   private
 
   def franchise_params
