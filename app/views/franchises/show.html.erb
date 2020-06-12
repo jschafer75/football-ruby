@@ -9,7 +9,7 @@
     </tr>
   <% end %>
 </table>
-<p><%= link_to 'Hire a Coach', franchise_people_path(@franchise, role: 'coach') %></p>
+<p><%= link_to 'Hire a Coach', available_franchise_people_path(@franchise, role: 'coach') %></p>
 <h2>Players</h2>
 <table>
   <% @players.each do |player| %>
@@ -19,8 +19,8 @@
     </tr>
   <% end %>
 </table>
+<p><%= link_to 'Sign a Player', available_franchise_people_path(@franchise, role: 'player') %></p>
 
 <p><%= link_to 'Edit Franchise', edit_franchise_path %></p>
 <p><%= link_to 'Generate Team', generate_team_franchise_path, method: :post %></p>
-<p><%= link_to 'Sign a Player', franchise_people_path(@franchise, role: 'player') %></p>
 <p><%= link_to 'Return to Franchise List', franchises_path %></p>

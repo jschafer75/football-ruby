@@ -21,4 +21,4 @@
   <p><%= link_to "Sign this #{@person.role.capitalize}", sign_franchise_person_path(@franchise, @person, role: @person.role) %></p>
 <% end %>
 <p><%= link_to "Edit this #{@person.role.capitalize}", edit_franchise_person_path(@franchise, @person, role: @person.role) %></p>
-<p><%= link_to "Return to #{@person.role.capitalize} List", franchise_people_path(@franchise, role: @person.role) %></p>
+<p><%= link_to "Return to #{@person.role.capitalize} List", available_franchise_people_path(@franchise, role: @person.role) %></p>
