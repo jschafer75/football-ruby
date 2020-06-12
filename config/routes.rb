@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       end
       collection do
         post 'generate_random'
+        get 'available'
       end
     end
     member do

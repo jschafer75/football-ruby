@@ -41,6 +41,12 @@ class PeopleController < ApplicationController
     redirect_to [@franchise, @person, role: @role]
   end
 
+  def available
+    @people = Person.where(role: @role, franchise: nil)
+
+    render 'index'
+  end
+
   def sign
     @person.franchise = @franchise
     @person.save
