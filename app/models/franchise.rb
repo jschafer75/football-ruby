@@ -50,4 +50,8 @@ class Franchise < ApplicationRecord
       end
     end
   end
+
+  def full_name
+    "#{city} #{mascot}"
+  end
 end
