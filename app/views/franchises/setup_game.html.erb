@@ -1,4 +1,11 @@
 <h1>Play A Game</h1>
 
-<p><%= link_to 'Play', play_game_franchise_path, method: :post %></p>
+<% Franchise.all.each do |item| %>
+  <ul>
+    <% if item.id != @franchise.id %>
+    <li><%= link_to "#{item.full_name}", play_game_franchise_path(opponent: item.id), method: :post %>
+    <% end %>
+  </ul>
+<% end %>
+
 <p><%= link_to 'Back', franchise_path(@franchise) %></p>

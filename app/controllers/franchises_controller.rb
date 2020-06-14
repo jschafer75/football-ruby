@@ -63,6 +63,8 @@ class FranchisesController < ApplicationController
   end
 
   def play_game
+    @opponent = Franchise.find(params[:opponent])
+
     render 'game_results'
   end
 
