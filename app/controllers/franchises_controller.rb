@@ -64,7 +64,8 @@ class FranchisesController < ApplicationController
 
   def play_game
     @opponent = Franchise.find(params[:opponent])
-
+    @game = Game.create(home_team: @franchise, away_team: @opponent)
+    @game.play
     render 'game_results'
   end
 

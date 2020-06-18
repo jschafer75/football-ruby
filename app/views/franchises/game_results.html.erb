@@ -1,5 +1,5 @@
 <h1>Game Results</h1>
 
-<%= @franchise.full_name %> played <%= @opponent.full_name %>
-
+<p><%= "#{@game.away_team.full_name}: #{@game.away_score}"%></p>
+<p><%= "#{@game.home_team.full_name}: #{@game.home_score}"%></p>
 <p><%= link_to 'Franchise Home', franchise_path(@franchise) %></p>
