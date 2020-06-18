@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_021510) do
+ActiveRecord::Schema.define(version: 2020_06_14_174657) do
 
   create_table "franchises", force: :cascade do |t|
     t.string "city"
@@ -18,6 +18,17 @@ ActiveRecord::Schema.define(version: 2020_05_24_021510) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rating", default: 70
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "home_team_id"
+    t.integer "away_team_id"
+    t.integer "home_score"
+    t.integer "away_score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["away_team_id"], name: "index_games_on_away_team_id"
+    t.index ["home_team_id"], name: "index_games_on_home_team_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -30,5 +41,7 @@ ActiveRecord::Schema.define(version: 2020_05_24_021510) do
     t.index ["franchise_id"], name: "index_people_on_franchise_id"
   end
 
+  add_foreign_key "games", "franchises", column: "away_team_id"
+  add_foreign_key "games", "franchises", column: "home_team_id"
   add_foreign_key "people", "franchises"
 end
