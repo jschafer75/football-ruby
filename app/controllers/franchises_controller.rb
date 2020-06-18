@@ -28,10 +28,7 @@ class FranchisesController < ApplicationController
     @franchises = Franchise.all
   end
 
-  def show
-    @coaches = @franchise.coaches
-    @players = @franchise.players
-  end
+  def show; end
 
   def update
     if @franchise.update(franchise_params)
@@ -67,6 +64,13 @@ class FranchisesController < ApplicationController
     @game = Game.create(home_team: @franchise, away_team: @opponent)
     @game.play
     render 'game_results'
+  end
+
+  def roster
+    @coaches = @franchise.coaches
+    @players = @franchise.players
+
+    render 'roster'
   end
 
   private
