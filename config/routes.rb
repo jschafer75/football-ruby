@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       post 'generate_team'
       get 'setup_game'
       post 'play_game'
+      get 'roster'
     end
   end
 end
