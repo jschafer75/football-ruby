@@ -3,6 +3,7 @@
 class Franchise < ApplicationRecord
   has_many :people
   has_many :games
+  has_one :stadium
   validates :city, presence: true,
                    length: { minimum: 2 }
   validates :mascot, presence: true,

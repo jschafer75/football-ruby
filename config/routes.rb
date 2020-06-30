@@ -12,6 +12,11 @@ Rails.application.routes.draw do
         get 'available'
       end
     end
+    resources :stadia do
+      collection do
+        post 'build_stadium'
+      end
+    end
     member do
       post 'generate_team'
       get 'setup_game'
