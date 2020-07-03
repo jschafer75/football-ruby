@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_24_005900) do
+ActiveRecord::Schema.define(version: 2020_07_03_023504) do
 
   create_table "franchises", force: :cascade do |t|
     t.string "city"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_06_24_005900) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rating", default: 70
+    t.string "primary_color", default: "#000000"
+    t.string "secondary_color", default: "#FFFFFF"
   end
 
   create_table "games", force: :cascade do |t|

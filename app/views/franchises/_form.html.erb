@@ -25,6 +25,16 @@
   </p>
 
   <p>
+    <%= form.label :primary_color %>
+    <%= form.color_field :primary_color %>
+  </p>
+
+  <p>
+    <%= form.label :secondary_color %>
+    <%= form.color_field :secondary_color %>
+  </p>
+
+  <p>
     <%= form.label :rating %>
     <%= form.number_field :rating, in: 0..100 %>
   </p>

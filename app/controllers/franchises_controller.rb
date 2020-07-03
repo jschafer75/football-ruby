@@ -31,6 +31,7 @@ class FranchisesController < ApplicationController
   def show; end
 
   def update
+    params.require(:franchise).extract!(:generate_people)
     if @franchise.update(franchise_params)
       redirect_to @franchise
     else
@@ -76,7 +77,7 @@ class FranchisesController < ApplicationController
   private
 
   def franchise_params
-    params.require(:franchise).permit(:city, :mascot, :rating, :generate_people)
+    params.require(:franchise).permit(:city, :mascot, :rating, :generate_people, :primary_color, :secondary_color)
   end
 
   def fetch_franchise
