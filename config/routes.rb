@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'football', to: 'franchises#index'
   
+  resources :leagues
+  
   resources :franchises do
     resources :people do
       member do
