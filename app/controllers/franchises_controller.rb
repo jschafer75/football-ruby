@@ -13,8 +13,8 @@ class FranchisesController < ApplicationController
 
     if @franchise.save
       if generate_people
-        @franchise.generate_players
-        @franchise.generate_coaches
+        @franchise.fill_players
+        @franchise.fill_coaches
       end
       redirect_to @franchise
     else
@@ -49,9 +49,9 @@ class FranchisesController < ApplicationController
     redirect_to franchises_path
   end
 
-  def generate_team
-    @franchise.generate_players
-    @franchise.generate_coaches
+  def fill_team
+    @franchise.fill_players
+    @franchise.fill_coaches
 
     redirect_to @franchise
   end
