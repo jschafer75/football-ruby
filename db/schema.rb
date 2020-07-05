@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_04_031829) do
+ActiveRecord::Schema.define(version: 2020_07_04_035432) do
 
   create_table "franchises", force: :cascade do |t|
     t.string "city"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2020_07_04_031829) do
     t.integer "rating", default: 70
     t.string "primary_color", default: "#000000"
     t.string "secondary_color", default: "#FFFFFF"
+    t.integer "league_id"
+    t.index ["league_id"], name: "index_franchises_on_league_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -57,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_031829) do
     t.index ["franchise_id"], name: "index_stadia_on_franchise_id"
   end
 
+  add_foreign_key "franchises", "leagues"
   add_foreign_key "games", "franchises", column: "away_team_id"
   add_foreign_key "games", "franchises", column: "home_team_id"
   add_foreign_key "people", "franchises"
