@@ -37,17 +37,17 @@ class Franchise < ApplicationRecord
     people.where(role: 'player')
   end
 
-  def generate_players
+  def fill_players
     PLAYER_DEFAULTS.each_key do |position|
-      PLAYER_DEFAULTS[position].times do
+      (PLAYER_DEFAULTS[position] - players.where(position: position).count).times do
         PersonGenerator.create_person('player', self, position)
       end
     end
   end
 
-  def generate_coaches
+  def fill_coaches
     COACH_DEFAULTS.each_key do |position|
-      COACH_DEFAULTS[position].times do
+      (COACH_DEFAULTS[position] - coaches.where(position: position).count).times do
         PersonGenerator.create_person('coach', self, position)
       end
     end
