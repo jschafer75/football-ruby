@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :schedules
   get 'football', to: 'franchises#index'
   
   resources :leagues
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
       get 'setup_game'
       post 'play_game'
       get 'roster'
+      get 'schedule'
     end
   end
 end

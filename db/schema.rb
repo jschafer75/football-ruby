@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_04_035432) do
+ActiveRecord::Schema.define(version: 2020_07_08_032236) do
 
   create_table "franchises", force: :cascade do |t|
     t.string "city"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_035432) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "year", default: 2020
   end
 
   create_table "people", force: :cascade do |t|
@@ -49,6 +50,15 @@ ActiveRecord::Schema.define(version: 2020_07_04_035432) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "franchise_id"
     t.index ["franchise_id"], name: "index_people_on_franchise_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "year"
+    t.json "opponents"
+    t.integer "franchise_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["franchise_id"], name: "index_schedules_on_franchise_id"
   end
 
   create_table "stadia", force: :cascade do |t|
