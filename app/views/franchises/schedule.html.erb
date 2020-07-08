@@ -1,0 +1,9 @@
+<h1><%= @schedule.year %> <%= @franchise.full_name %> Schedule</h1>
+
+<ol>
+  <% @opponents.each do |o| %>
+    <li><%= o.full_name%></li>
+  <% end %>
+</ol>
+
+<p><%= link_to 'Franchise Home', franchise_path(@franchise) %></p>

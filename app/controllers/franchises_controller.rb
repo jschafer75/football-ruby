@@ -74,6 +74,12 @@ class FranchisesController < ApplicationController
     render 'roster'
   end
 
+  def schedule
+    @schedule = @franchise.schedules.detect { |s| s.year == @franchise.league.year }
+    @opponents = @schedule.opponents.collect { |o| Franchise.find(o['id']) }
+    render 'schedule'
+  end
+
   private
 
   def franchise_params

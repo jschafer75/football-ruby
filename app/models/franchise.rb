@@ -5,6 +5,7 @@ class Franchise < ApplicationRecord
   has_many :games
   has_one :stadium
   belongs_to :league
+  has_many :schedules
   validates :city, presence: true,
                    length: { minimum: 2 }
   validates :mascot, presence: true,
@@ -38,6 +39,10 @@ class Franchise < ApplicationRecord
     people.where(role: 'player')
   end
 
+  def full_name
+    "#{city} #{mascot}"
+  end
+
   def fill_players
     PLAYER_DEFAULTS.each_key do |position|
       (PLAYER_DEFAULTS[position] - players.where(position: position).count).times do
@@ -54,7 +59,9 @@ class Franchise < ApplicationRecord
     end
   end
 
-  def full_name
-    "#{city} #{mascot}"
+  def generate_schedule
+    year = league.year
+    opponents = league.franchises.select(:id) - [self]
+    Schedule.create(franchise: self, year: year, opponents: opponents).to_json
   end
 end
