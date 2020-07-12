@@ -22,9 +22,10 @@ Rails.application.routes.draw do
     end
     member do
       post 'fill_team'
+      get 'roster'
       get 'setup_game'
       post 'play_game'
-      get 'roster'
+      post 'generate_schedule'
       get 'schedule'
     end
   end

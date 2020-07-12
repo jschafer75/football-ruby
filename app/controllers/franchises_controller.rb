@@ -61,8 +61,11 @@ class FranchisesController < ApplicationController
   end
 
   def play_game
-    @opponent = Franchise.find(params[:opponent])
-    @game = Game.create(home_team: @franchise, away_team: @opponent)
+    @game = Game.find(params[:game_id])
+    unless @game
+      @opponent = Franchise.find(params[:opponent_id])
+      @game = Game.create(home_team: @franchise, away_team: @opponent)
+    end
     @game.play
     render 'game_results'
   end
@@ -74,9 +77,15 @@ class FranchisesController < ApplicationController
     render 'roster'
   end
 
+  def generate_schedule
+    @franchise.generate_schedule
+
+    redirect_to schedule_franchise_path
+  end
+
   def schedule
-    @schedule = @franchise.schedules.detect { |s| s.year == @franchise.league.year }
-    @opponents = @schedule.opponents.collect { |o| Franchise.find(o['id']) }
+    @schedule = @franchise.current_schedule
+    @games = @schedule.games.collect { |g| Game.find(g['id']) }
     render 'schedule'
   end
 

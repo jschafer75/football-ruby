@@ -62,6 +62,11 @@ class Franchise < ApplicationRecord
   def generate_schedule
     year = league.year
     opponents = league.franchises.select(:id) - [self]
-    Schedule.create(franchise: self, year: year, opponents: opponents).to_json
+    games = opponents.collect { |o| Game.create(home_team: self, away_team: o) }
+    Schedule.create(franchise: self, year: year, games: games).to_json
+  end
+
+  def current_schedule
+    schedules.detect { |s| s.year == league.year }
   end
 end
