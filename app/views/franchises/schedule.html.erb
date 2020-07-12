@@ -1,8 +1,13 @@
 <h1><%= @schedule.year %> <%= @franchise.full_name %> Schedule</h1>
 
 <ol>
-  <% @opponents.each do |o| %>
-    <li><%= o.full_name%></li>
+  <% @games.each do |g| %>
+    <% opponent = g.away_team %>
+    <% if g.home_score.nil? %>
+      <li><%= link_to "#{opponent.full_name}", play_game_franchise_path(game_id: g.id), method: :post %></li>
+    <% else %>
+      <li><%= "#{@franchise.full_name}: #{g.home_score}, #{opponent.full_name}: #{g.away_score}" %> 
+    <% end %>
   <% end %>
 </ol>
 

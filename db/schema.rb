@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_032236) do
+ActiveRecord::Schema.define(version: 2020_07_12_025246) do
 
   create_table "franchises", force: :cascade do |t|
     t.string "city"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_032236) do
 
   create_table "schedules", force: :cascade do |t|
     t.integer "year"
-    t.json "opponents"
+    t.json "games"
     t.integer "franchise_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
