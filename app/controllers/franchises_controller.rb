@@ -83,7 +83,8 @@ class FranchisesController < ApplicationController
   private
 
   def franchise_params
-    params.require(:franchise).permit(:city, :mascot, :rating, :generate_people, :primary_color, :secondary_color)
+    params.require(:franchise)
+          .permit(:city, :mascot, :rating, :generate_people, :primary_color, :secondary_color, :league_id)
   end
 
   def fetch_franchise
