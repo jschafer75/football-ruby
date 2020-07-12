@@ -8,7 +8,11 @@
 <p>Secondary Color: <%= @franchise.secondary_color %></p>
 <p>League: <%= @franchise.league&.name %></p>
 <p><%= link_to 'Roster', roster_franchise_path %></p>
-<p><%= link_to 'Schedule', schedule_franchise_path %></p>
+<% if @franchise.current_schedule %>
+  <p><%= link_to 'Schedule', schedule_franchise_path %></p>
+<% else %>
+  <p><%= link_to 'Generate Schedule', generate_schedule_franchise_path, method: :post %></p>
+<% end %>
 <p><%= link_to 'Edit Franchise', edit_franchise_path %></p>
 <p><%= link_to 'Fill Team', fill_team_franchise_path, method: :post %></p>
 <p><%= link_to 'Return to Franchise List', franchises_path %></p>
