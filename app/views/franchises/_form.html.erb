@@ -43,6 +43,11 @@
     <%= form.label :generate_people %>
     <%= form.check_box :generate_people %>
   </p>
+
+  <p>
+    <%= form.label :league_id %>
+    <%= form.collection_select(:league_id, League.all, :id, :name) %>
+  </p>
  
   <p>
     <%= form.submit %>
