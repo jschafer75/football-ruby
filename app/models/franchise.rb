@@ -5,7 +5,6 @@ class Franchise < ApplicationRecord
   has_many :games
   has_one :stadium
   belongs_to :league
-  has_many :schedules
   validates :city, presence: true,
                    length: { minimum: 2 }
   validates :mascot, presence: true,
@@ -59,14 +58,7 @@ class Franchise < ApplicationRecord
     end
   end
 
-  def generate_schedule
-    year = league.year
-    opponents = league.franchises.select(:id) - [self]
-    games = opponents.collect { |o| Game.create(home_team: self, away_team: o) }
-    Schedule.create(franchise: self, year: year, games: games).to_json
-  end
-
   def current_schedule
-    schedules.detect { |s| s.year == league.year }
+    league.current_schedule.select { |g| g.away_team == self || g.home_team == self }
   end
 end

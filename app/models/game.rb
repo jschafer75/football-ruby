@@ -3,6 +3,7 @@
 class Game < ApplicationRecord
   belongs_to :home_team, class_name: 'Franchise'
   belongs_to :away_team, class_name: 'Franchise'
+  belongs_to :league
 
   def play
     home_score = home_team.rating / 3

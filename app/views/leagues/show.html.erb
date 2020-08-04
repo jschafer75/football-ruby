@@ -1,5 +1,20 @@
 <h1><%= @league.name %></h1>
 <p id="notice"><%= notice %></p>
+ 
+<table>
+  <% @league.franchises.each do |franchise| %>
+    <tr>
+      <td><%= link_to "#{franchise.city} #{franchise.mascot} (#{franchise.rating})", franchise_path(franchise) %></td>
+      <td><%= link_to 'Destroy', franchise_path(franchise),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to 'Generate Schedule', generate_schedule_league_path(@league), method: :post %>
+</p>
 
 <%= link_to 'Edit', edit_league_path(@league) %> |
 <%= link_to 'Back', leagues_path %>

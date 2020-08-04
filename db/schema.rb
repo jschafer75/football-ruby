@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_12_025246) do
+ActiveRecord::Schema.define(version: 2020_07_30_034106) do
 
   create_table "franchises", force: :cascade do |t|
     t.string "city"
@@ -31,8 +31,12 @@ ActiveRecord::Schema.define(version: 2020_07_12_025246) do
     t.integer "away_score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "year"
+    t.integer "week"
+    t.integer "league_id"
     t.index ["away_team_id"], name: "index_games_on_away_team_id"
     t.index ["home_team_id"], name: "index_games_on_home_team_id"
+    t.index ["league_id"], name: "index_games_on_league_id"
   end
 
   create_table "leagues", force: :cascade do |t|
@@ -50,15 +54,6 @@ ActiveRecord::Schema.define(version: 2020_07_12_025246) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "franchise_id"
     t.index ["franchise_id"], name: "index_people_on_franchise_id"
-  end
-
-  create_table "schedules", force: :cascade do |t|
-    t.integer "year"
-    t.json "games"
-    t.integer "franchise_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["franchise_id"], name: "index_schedules_on_franchise_id"
   end
 
   create_table "stadia", force: :cascade do |t|
