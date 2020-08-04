@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LeaguesController < ApplicationController
-  before_action :set_league, only: %i[show edit update destroy]
+  before_action :set_league, only: %i[show edit update destroy generate_schedule]
 
   # GET /leagues
   # GET /leagues.json
@@ -58,6 +58,16 @@ class LeaguesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to leagues_url, notice: 'League was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # PATCH/PUT /leagues/1/generate_schedule
+  # PATCH/PUT /leagues/1/generate_schedule.json
+  def generate_schedule
+    @league.generate_schedule
+    respond_to do |format|
+      format.html { redirect_to @league, notice: 'League schedule was successfully generated.' }
+      format.json { render :show, status: :ok, location: @league }
     end
   end
 

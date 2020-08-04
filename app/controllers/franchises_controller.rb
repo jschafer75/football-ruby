@@ -77,15 +77,8 @@ class FranchisesController < ApplicationController
     render 'roster'
   end
 
-  def generate_schedule
-    @franchise.generate_schedule
-
-    redirect_to schedule_franchise_path
-  end
-
   def schedule
     @schedule = @franchise.current_schedule
-    @games = @schedule.games.collect { |g| Game.find(g['id']) }
     render 'schedule'
   end
 
