@@ -9,6 +9,7 @@
 <p>League: <%= link_to @franchise.league&.name, league_path(@franchise.league) %></p>
 <p><%= link_to 'Roster', roster_franchise_path %></p>
 <p><%= link_to 'Schedule', schedule_franchise_path %></p>
+<p><%= link_to 'Facilities', franchise_facility_path(@franchise) %></p>
 <p><%= link_to 'Edit Franchise', edit_franchise_path %></p>
 <p><%= link_to 'Fill Team', fill_team_franchise_path, method: :post %></p>
 <p><%= link_to 'Return to Franchise List', franchises_path %></p>
