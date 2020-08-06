@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_30_034106) do
+ActiveRecord::Schema.define(version: 2020_08_06_024737) do
+
+  create_table "facilities", force: :cascade do |t|
+    t.integer "franchise_id"
+    t.integer "available_space", default: 0
+    t.integer "medical", default: 0
+    t.integer "practice", default: 0
+    t.integer "scouting", default: 0
+    t.integer "meeting", default: 0
+    t.integer "research", default: 0
+    t.integer "technology", default: 0
+    t.integer "locker", default: 0
+    t.integer "dining", default: 0
+    t.integer "espionage", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["franchise_id"], name: "index_facilities_on_franchise_id"
+  end
 
   create_table "franchises", force: :cascade do |t|
     t.string "city"

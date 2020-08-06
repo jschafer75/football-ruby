@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         post 'build_stadium'
       end
     end
+    resources :facilities
     member do
       post 'fill_team'
       get 'roster'

@@ -4,6 +4,7 @@ class Franchise < ApplicationRecord
   has_many :people
   has_many :games
   has_one :stadium
+  has_one :facility
   belongs_to :league
   validates :city, presence: true,
                    length: { minimum: 2 }
@@ -60,5 +61,9 @@ class Franchise < ApplicationRecord
 
   def current_schedule
     league.current_schedule.select { |g| g.away_team == self || g.home_team == self }
+  end
+
+  def generate_infrastructure
+    Facility.create(franchise: self)
   end
 end
