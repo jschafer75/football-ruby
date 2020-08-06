@@ -1,9 +1,5 @@
 <h1><%= @franchise.city %> <%= @franchise.mascot %> (<%= @franchise.rating %>)</h1>
-<p>Stadium: <%= @franchise.stadium.size.capitalize if @franchise.stadium %>
-<% unless @franchise.stadium %>
-<%= link_to 'Build a Stadium', build_stadium_franchise_stadia_path(@franchise), method: :post %>
-<% end %>
-</p>
+<p>Stadium: <%= @franchise.stadium.size.capitalize %></p>
 <p>Primary Color: <%= @franchise.primary_color %></p>
 <p>Secondary Color: <%= @franchise.secondary_color %></p>
 <p>League: <%= link_to @franchise.league&.name, league_path(@franchise.league) %></p>

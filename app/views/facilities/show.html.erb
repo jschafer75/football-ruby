@@ -3,15 +3,15 @@
 <p id="notice"><%= notice %></p>
 
 <table>
-<tr><td>Medical</td><td><%= @facility.medical %></tr>
-<tr><td>Practice</td><td><%= @facility.practice %></tr>
-<tr><td>Scouting</td><td><%= @facility.scouting %></tr>
-<tr><td>Meeting</td><td><%= @facility.meeting %></tr>
-<tr><td>Research</td><td><%= @facility.research %></tr>
-<tr><td>Technology</td><td><%= @facility.technology %></tr>
-<tr><td>Locker Room</td><td><%= @facility.locker %></tr>
-<tr><td>Dining</td><td><%= @facility.dining %></tr>
-<tr><td>Espionage</td><td><%= @facility.espionage %></tr>
+<tr><td>Medical</td><td><%= @facility.medical.capitalize %></tr>
+<tr><td>Practice</td><td><%= @facility.practice.capitalize %></tr>
+<tr><td>Scouting</td><td><%= @facility.scouting.capitalize %></tr>
+<tr><td>Meeting</td><td><%= @facility.meeting.capitalize %></tr>
+<tr><td>Research</td><td><%= @facility.research.capitalize %></tr>
+<tr><td>Technology</td><td><%= @facility.technology.capitalize %></tr>
+<tr><td>Locker Room</td><td><%= @facility.locker.capitalize %></tr>
+<tr><td>Dining</td><td><%= @facility.dining.capitalize %></tr>
+<tr><td>Espionage</td><td><%= @facility.espionage.capitalize %></tr>
 </table>
 
 <%= link_to 'Back', franchise_path(@franchise) %>
