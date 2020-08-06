@@ -64,6 +64,7 @@ class Franchise < ApplicationRecord
   end
 
   def generate_infrastructure
+    Stadium.create(franchise: self)
     Facility.create(franchise: self)
   end
 end

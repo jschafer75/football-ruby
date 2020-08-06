@@ -16,8 +16,7 @@ class FranchisesController < ApplicationController
         @franchise.fill_players
         @franchise.fill_coaches
       end
-      @franchise.generate_stadium
-      @franchise.generate_facility
+      @franchise.generate_infrastructure
       redirect_to @franchise
     else
       render 'new'

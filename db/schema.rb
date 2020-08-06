@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_024737) do
+ActiveRecord::Schema.define(version: 2020_08_06_032934) do
 
   create_table "facilities", force: :cascade do |t|
     t.integer "franchise_id"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_024737) do
 
   create_table "stadia", force: :cascade do |t|
     t.integer "franchise_id"
-    t.integer "size"
+    t.integer "size", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["franchise_id"], name: "index_stadia_on_franchise_id"
