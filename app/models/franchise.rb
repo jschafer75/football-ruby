@@ -11,6 +11,12 @@ class Franchise < ApplicationRecord
   validates :mascot, presence: true,
                      length: { minimum: 2 }
 
+  after_initialize do
+    fill_players
+    fill_coaches
+    generate_infrastructure
+  end
+
   PLAYER_DEFAULTS = {
     'QB' => 1,
     'RB' => 2,
