@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'franchises#index'
+
   resources :schedules
   get 'football', to: 'franchises#index'
   
