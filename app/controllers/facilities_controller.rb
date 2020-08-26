@@ -2,6 +2,7 @@
 
 class FacilitiesController < ApplicationController
   before_action :set_facility, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: [:index]
 
   # GET /facilities
   # GET /facilities.json
