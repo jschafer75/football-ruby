@@ -8,4 +8,7 @@
 <p><%= link_to 'Facilities', franchise_facility_path(@franchise) %></p>
 <p><%= link_to 'Edit Franchise', edit_franchise_path %></p>
 <p><%= link_to 'Fill Team', fill_team_franchise_path, method: :post %></p>
+<% if current_user.franchise == @franchise %>
+  <p><%= link_to 'Leave Franchise', set_user_franchise_path(clear: true), method: :post %></p>
+<% end %>
 <p><%= link_to 'Return to Franchise List', franchises_path %></p>

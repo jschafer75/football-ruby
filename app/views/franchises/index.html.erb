@@ -4,10 +4,17 @@
 <table>
   <% @franchises.each do |franchise| %>
     <tr>
-      <td><%= link_to "#{franchise.city} #{franchise.mascot} (#{franchise.rating})", franchise_path(franchise) %></td>
+      <td>
+      <% if current_user.franchise == franchise %><strong><% end %>
+      <%= link_to "#{franchise.city} #{franchise.mascot} (#{franchise.rating})", franchise_path(franchise) %>
+      <% if current_user.franchise == franchise %></strong><% end %>
+      </td>
       <td><%= link_to 'Destroy', franchise_path(franchise),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
+      <% if current_user.franchise.nil? && franchise.user.nil? %>
+        <td><%= link_to "Set As Franchise", set_user_franchise_path(franchise), method: :post %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
