@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       get 'setup_game'
       post 'play_game'
       get 'schedule'
+      post 'set_user'
     end
   end
 end

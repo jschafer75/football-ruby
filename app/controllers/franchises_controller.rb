@@ -83,6 +83,18 @@ class FranchisesController < ApplicationController
     render 'schedule'
   end
 
+  def set_user
+    if params[:clear]
+      @franchise.user = nil
+      @franchise.save
+      redirect_to franchises_path
+    else
+      @franchise.user = current_user
+      @franchise.save
+      redirect_to @franchise
+    end
+  end
+
   private
 
   def franchise_params

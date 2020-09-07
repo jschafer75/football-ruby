@@ -6,15 +6,18 @@ class Franchise < ApplicationRecord
   has_one :stadium
   has_one :facility
   belongs_to :league
+  belongs_to :user, optional: true
   validates :city, presence: true,
                    length: { minimum: 2 }
   validates :mascot, presence: true,
                      length: { minimum: 2 }
 
   after_initialize do
-    fill_players
-    fill_coaches
-    generate_infrastructure
+    if new_record?
+      fill_players
+      fill_coaches
+      generate_infrastructure
+    end
   end
 
   PLAYER_DEFAULTS = {

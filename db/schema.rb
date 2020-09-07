@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_28_040932) do
+ActiveRecord::Schema.define(version: 2020_09_07_032912) do
 
   create_table "facilities", force: :cascade do |t|
     t.integer "franchise_id"
@@ -38,7 +38,9 @@ ActiveRecord::Schema.define(version: 2020_08_28_040932) do
     t.string "primary_color", default: "#000000"
     t.string "secondary_color", default: "#FFFFFF"
     t.integer "league_id"
+    t.integer "user_id"
     t.index ["league_id"], name: "index_franchises_on_league_id"
+    t.index ["user_id"], name: "index_franchises_on_user_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -92,12 +94,16 @@ ActiveRecord::Schema.define(version: 2020_08_28_040932) do
     t.boolean "superadmin_role", default: false
     t.boolean "supervisor_role", default: false
     t.boolean "user_role", default: true
+    t.integer "franchise_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["franchise_id"], name: "index_users_on_franchise_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "franchises", "leagues"
+  add_foreign_key "franchises", "users"
   add_foreign_key "games", "franchises", column: "away_team_id"
   add_foreign_key "games", "franchises", column: "home_team_id"
   add_foreign_key "people", "franchises"
+  add_foreign_key "users", "franchises"
 end

@@ -14,3 +14,4 @@ Franchise.create(city: 'Vegas', mascot: 'Dealers', rating: 70, league: league)
 Franchise.create(city: 'Canada', mascot: 'Hosers', rating: 60, league: league)
 Franchise.create(city: 'Dallas', mascot: 'Fort Worth', rating: 50, league: league)
 league.generate_schedule
+User.create(email: 'test@test.com', password: '123456')
