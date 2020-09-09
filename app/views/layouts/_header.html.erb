@@ -1,0 +1,11 @@
+<header style="background-color:lightgray;">
+  <% if current_user %>
+    <% franchise = current_user.franchise %>
+    <% if franchise %>
+      <h1><%= franchise.city %> <%= franchise.mascot %> (<%= franchise.rating %>)</h1>
+    <% else %>
+      <h1>Beyond the Gridiron</h1>
+    <% end %>
+    <p><%= current_user&.email %></p>
+  <% end %>
+</header>

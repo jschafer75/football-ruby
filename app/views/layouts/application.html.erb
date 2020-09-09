@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Football</title>
+    <title>Beyond the Gridiron</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,9 +10,10 @@
   </head>
 
   <body>
+    <%= render "layouts/header.html" %>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= current_user&.email %>
 
     <%= yield %>
     <%= render "layouts/footer" %>
