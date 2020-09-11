@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class FranchisesController < ApplicationController
-  before_action :fetch_franchise
-
   def new
     @franchise = Franchise.new
   end
@@ -100,9 +98,5 @@ class FranchisesController < ApplicationController
   def franchise_params
     params.require(:franchise)
           .permit(:city, :mascot, :rating, :generate_people, :primary_color, :secondary_color, :league_id)
-  end
-
-  def fetch_franchise
-    @franchise = Franchise.find(params[:id]) if params[:id]
   end
 end

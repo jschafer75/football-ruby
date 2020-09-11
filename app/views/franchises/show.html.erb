@@ -10,4 +10,3 @@
 <% if current_user.franchise == @franchise %>
   <p><%= link_to 'Leave Franchise', set_user_franchise_path(clear: true), method: :post %></p>
 <% end %>
-<p><%= link_to 'Return to Franchise List', franchises_path %></p>
