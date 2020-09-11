@@ -6,6 +6,9 @@
     <% else %>
       <h1>Beyond the Gridiron</h1>
     <% end %>
-    <p><%= current_user&.email %></p>
+    <p>
+    <%= link_to "League", league_path(@franchise.league) %> |
+    <%= link_to "Team", franchise_path %> |
+    <%= current_user&.email %></p>
   <% end %>
 </header>
