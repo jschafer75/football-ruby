@@ -1,12 +1,5 @@
 <footer style="background-color:lightgray;">
   <% if current_user %>
-    <p>
-    <% if current_user.franchise %>
-      <%= link_to "Franchise Home", franchise_path(current_user.franchise) %>
-    <% else %>
-      <%= link_to "Select Franchise", franchises_path %>
-    <% end %>
-    </p>
     <p><%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %></p>
   <% end %>
 </footer>
