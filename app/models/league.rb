@@ -18,6 +18,18 @@ class League < ApplicationRecord
     Game.where(year: year, league: self)
   end
 
+  def current_week_schedule
+    Game.where(year: year, week: week, league: self)
+  end
+
+  def advance_week
+    transaction do
+      current_week_schedule.each(&:play)
+      self.week += 1
+      save!
+    end
+  end
+
   private
 
   def loop_round_robin_wheel(center, top, left, right)

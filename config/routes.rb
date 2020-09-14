@@ -2,12 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'franchises#index'
 
-  resources :schedules
   get 'football', to: 'franchises#index'
   
   resources :leagues do
     member do
       post 'generate_schedule'
+      get 'schedule'
+      post 'advance_week'
     end
   end
   

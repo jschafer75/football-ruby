@@ -76,4 +76,12 @@ class Franchise < ApplicationRecord
     Stadium.create(franchise: self)
     Facility.create(franchise: self)
   end
+
+  def current_game
+    game(league.year, league.week)
+  end
+
+  def game(year, week)
+    Game.where(league: league, year: year, week: week)
+  end
 end
