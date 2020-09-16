@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_13_040042) do
+ActiveRecord::Schema.define(version: 2020_09_16_030221) do
 
   create_table "facilities", force: :cascade do |t|
     t.integer "franchise_id"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 2020_09_13_040042) do
     t.integer "user_id"
     t.index ["league_id"], name: "index_franchises_on_league_id"
     t.index ["user_id"], name: "index_franchises_on_user_id"
+  end
+
+  create_table "game_weeks", force: :cascade do |t|
+    t.boolean "game_planning"
+    t.boolean "practice"
+    t.boolean "medical_rehab"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "games", force: :cascade do |t|
