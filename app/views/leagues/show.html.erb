@@ -4,10 +4,11 @@
 <table>
   <% @league.franchises.each do |franchise| %>
     <tr>
-      <td><%= link_to "#{franchise.city} #{franchise.mascot} (#{franchise.rating})", franchise_path(franchise) %></td>
-      <td><%= link_to 'Destroy', franchise_path(franchise),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+      <td>
+        <% if current_user.franchise == franchise %><strong><% end %>
+        <%= link_to "#{franchise.city} #{franchise.mascot} (#{franchise.rating})", franchise_path(franchise) %>
+        <% if current_user.franchise == franchise %></strong><% end %>
+      </td>
     </tr>
   <% end %>
 </table>

@@ -69,7 +69,7 @@ class Franchise < ApplicationRecord
   end
 
   def current_schedule
-    league.current_schedule.select { |g| g.away_team == self || g.home_team == self }
+    Game.where("home_team_id = #{id} OR away_team_id = #{id}").where(year: league.year).order(:week)
   end
 
   def generate_infrastructure
