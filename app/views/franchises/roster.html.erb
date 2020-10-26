@@ -4,6 +4,7 @@
     <tr>
       <td><%= link_to "#{coach.name}", franchise_person_path(@franchise, coach) %></td>
       <td><%= coach.position %></td>
+      <td><%= coach.rating %></td>
     </tr>
   <% end %>
 </table>
@@ -14,6 +15,7 @@
     <tr>
       <td><%= link_to "#{player.name}", franchise_person_path(@franchise, player) %></td>
       <td><%= player.position %></td>
+      <td><%= player.rating %></td>
     </tr>
   <% end %>
 </table>

@@ -84,4 +84,10 @@ class Franchise < ApplicationRecord
   def game(year, week)
     Game.where(league: league, year: year, week: week)
   end
+
+  def update_rating
+    ratings = players.collect(&:rating)
+    self.rating = ratings.sum / ratings.size
+    save!
+  end
 end

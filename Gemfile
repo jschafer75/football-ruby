@@ -27,6 +27,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 # Use CanCanCan for application access
 gem 'cancancan'
+# Use rubystats for random numbers
+gem 'rubystats'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
