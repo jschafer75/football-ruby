@@ -783,8 +783,12 @@ class PersonGenerator
   def self.create_person(role = 'player', franchise = nil, position = nil)
     name = "#{FIRST_NAMES.sample} #{LAST_NAMES.sample}"
     position ||= POSITIONS[role].sample
+    @rating_generator ||= Rubystats::BetaDistribution.new(7, 3)
+    rating = @rating_generator.icdf(rand) * 100
 
-    Person.create(franchise: franchise, name: name, position: position, role: role)
+    Person.create(franchise: franchise, name: name, position: position, role: role, rating: rating).tap do |p|
+      p.franchise.update_rating
+    end
   end
 end
 # rubocop:enable Metrics/ClassLength
