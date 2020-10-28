@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 league = League.create(name: "Peanut Butter League")
-Franchise.create(city: 'Cibolo', mascot: 'Bison', rating: 100, league: league)
-Franchise.create(city: 'San Antonio', mascot: 'Scorpions', rating: 90, league: league)
-Franchise.create(city: 'Houston', mascot: 'Humidity', rating: 80, league: league)
-Franchise.create(city: 'Vegas', mascot: 'Dealers', rating: 70, league: league)
-Franchise.create(city: 'Canada', mascot: 'Hosers', rating: 60, league: league)
-Franchise.create(city: 'Dallas', mascot: 'Fort Worth', rating: 50, league: league)
+Franchise.create(city: 'Cibolo', mascot: 'Bison', league: league)
+Franchise.create(city: 'San Antonio', mascot: 'Scorpions', league: league)
+Franchise.create(city: 'Houston', mascot: 'Humidity', league: league)
+Franchise.create(city: 'Vegas', mascot: 'Dealers', league: league)
+Franchise.create(city: 'Canada', mascot: 'Hosers', league: league)
+Franchise.create(city: 'Dallas', mascot: 'Fort Worth', league: league)
 league.generate_schedule
 User.create(email: 'test@test.com', password: '123456')
