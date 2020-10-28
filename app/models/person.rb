@@ -17,7 +17,7 @@ class Person < ApplicationRecord
   private
 
   def update_franchise_rating
-    return if @franchise == franchise
+    return if @franchise == franchise && !saved_change_to_rating?
 
     @franchise ||= franchise
 
