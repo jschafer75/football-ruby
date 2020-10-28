@@ -6,8 +6,16 @@ class Game < ApplicationRecord
   belongs_to :league
 
   def play
-    home_score = home_team.rating / 3
-    away_score = away_team.rating / 3
+    score_generator = Rubystats::NormalDistribution.new(23.0, 7.0)
+
+    home_score = generate_score(score_generator.rng, home_team.offense_rating, away_team.defense_rating)
+    away_score = generate_score(score_generator.rng, away_team.offense_rating, home_team.defense_rating)
     update_attributes(home_score: home_score, away_score: away_score)
+  end
+
+  private
+
+  def generate_score(base, offense_rating, defense_rating)
+    base * offense_rating / defense_rating
   end
 end
