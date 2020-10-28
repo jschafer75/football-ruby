@@ -40,6 +40,9 @@ class Franchise < ApplicationRecord
     'DC' => 1
   }.freeze
 
+  OFFENSE_POITIONS = %w[QB RB TE WR OL].freeze
+  DEFENSE_POITIONS = %w[DL LB S CB].freeze
+
   def coaches
     people.where(role: 'coach')
   end
@@ -86,8 +89,22 @@ class Franchise < ApplicationRecord
   end
 
   def update_rating
-    ratings = players.collect(&:rating)
-    self.rating = ratings.sum / ratings.size
+    offense_ratings = players.select { |p| Franchise::OFFENSE_POITIONS.include?(p.position) }.collect(&:rating)
+    defense_ratings = players.select { |p| Franchise::DEFENSE_POITIONS.include?(p.position) }.collect(&:rating)
+    self.offense_rating = average(offense_ratings)
+    self.defense_rating = average(defense_ratings)
     save!
+  end
+
+  def rating
+    average([offense_rating, defense_rating])
+  end
+
+  private
+
+  def average(array)
+    return 0 if array.empty?
+
+    array.sum / array.size
   end
 end

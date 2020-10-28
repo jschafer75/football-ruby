@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_193015) do
+ActiveRecord::Schema.define(version: 2020_10_28_004121) do
 
   create_table "facilities", force: :cascade do |t|
     t.integer "franchise_id"
@@ -34,11 +34,12 @@ ActiveRecord::Schema.define(version: 2020_10_04_193015) do
     t.string "mascot"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "rating", default: 70
     t.string "primary_color", default: "#000000"
     t.string "secondary_color", default: "#FFFFFF"
     t.integer "league_id"
     t.integer "user_id"
+    t.integer "offense_rating", default: 0
+    t.integer "defense_rating", default: 0
     t.index ["league_id"], name: "index_franchises_on_league_id"
     t.index ["user_id"], name: "index_franchises_on_user_id"
   end
