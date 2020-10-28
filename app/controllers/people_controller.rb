@@ -11,6 +11,7 @@ class PeopleController < ApplicationController
 
   def create
     @person = Person.new(person_params)
+    @person.rating = PersonGenerator.generate_rating
 
     if @person.save
       redirect_to [@franchise, @person]
@@ -62,7 +63,7 @@ class PeopleController < ApplicationController
   end
 
   def generate_random
-    @person = PersonGenerator.create_person(params[:role] || 'player')
+    @person = PersonGenerator.create_person(@role)
 
     if @person.id
       redirect_to [@franchise, @person]
