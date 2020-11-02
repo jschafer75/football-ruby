@@ -12,4 +12,9 @@
   <% end %>
 </ol>
 
-<%= link_to "Advance Week", advance_week_league_path, method: :post %>
+<ul>
+  <li><%= link_to "Play Week", play_week_league_path, method: :post %></li>
+<% if @league.week_schedule(@league.week + 1).present? %>
+  <li><%= link_to "Advance Week", advance_week_league_path, method: :post %></li>
+<% end %>
+</ul>
