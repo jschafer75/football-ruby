@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     member do
       post 'generate_schedule'
       get 'schedule'
+      post 'play_week'
       post 'advance_week'
     end
   end

@@ -22,9 +22,18 @@ class League < ApplicationRecord
     Game.where(year: year, week: week, league: self)
   end
 
+  def week_schedule(week)
+    Game.where(year: year, week: week, league: self)
+  end
+
+  def play_week
+    current_week_schedule.each(&:play)
+    save!
+  end
+
   def advance_week
     transaction do
-      current_week_schedule.each(&:play)
+      play_week
       self.week += 1
       save!
     end
