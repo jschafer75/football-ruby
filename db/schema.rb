@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_030112) do
+ActiveRecord::Schema.define(version: 2020_11_09_041142) do
 
   create_table "facilities", force: :cascade do |t|
     t.integer "franchise_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_030112) do
     t.integer "user_id"
     t.integer "offense_rating", default: 0
     t.integer "defense_rating", default: 0
+    t.integer "funds", default: 20000000
     t.index ["league_id"], name: "index_franchises_on_league_id"
     t.index ["user_id"], name: "index_franchises_on_user_id"
   end
