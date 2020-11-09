@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_28_004121) do
+ActiveRecord::Schema.define(version: 2020_11_09_030112) do
 
   create_table "facilities", force: :cascade do |t|
     t.integer "franchise_id"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_10_28_004121) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "franchise_id"
     t.integer "rating"
+    t.integer "age"
     t.index ["franchise_id"], name: "index_people_on_franchise_id"
   end
 

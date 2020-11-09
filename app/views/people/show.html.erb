@@ -1,5 +1,6 @@
 <h1><%= @person.name %> (<%= @person.rating %>)</h1>
 <h2><%= @person.position %>  - <%= display_franchise_name(@person.franchise) %></h2>
+<h2>Age: <%= @person.age %></h2>
 
 <% if @person.errors.any? %>
   <div id="error_explanation">
