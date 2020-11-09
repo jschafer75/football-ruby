@@ -780,12 +780,22 @@ class PersonGenerator
   POSITIONS = { 'player' => %w[QB RB WR TE OL DL LB S CB K P],
                 'coach' => %w[HC OC DC] }.freeze
 
-  def self.create_person(role = 'player', franchise = nil, position = nil)
-    name = "#{FIRST_NAMES.sample} #{LAST_NAMES.sample}"
-    position ||= POSITIONS[role].sample
-    rating = generate_rating
+  AGE_RANGE = { 'player' => 21..35,
+                'coach' => 35..60 }.freeze
 
-    Person.create(franchise: franchise, name: name, position: position, role: role, rating: rating).tap do |p|
+  def self.create_person(role = 'player', franchise = nil, position = nil)
+    position ||= POSITIONS[role].sample
+
+    person_params = {
+      franchise: franchise,
+      name: "#{FIRST_NAMES.sample} #{LAST_NAMES.sample}",
+      position: position,
+      role: role,
+      rating: generate_rating,
+      age: Random.new.rand(AGE_RANGE[role])
+    }
+
+    Person.create(person_params).tap do |p|
       p.franchise.update_rating if franchise
     end
   end
