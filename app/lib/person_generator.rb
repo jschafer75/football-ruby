@@ -783,7 +783,10 @@ class PersonGenerator
   AGE_RANGE = { 'player' => 21..35,
                 'coach' => 35..60 }.freeze
 
+  SALARY_MULTIPLIER = 300_000
+
   def self.create_person(role = 'player', franchise = nil, position = nil)
+    rating = generate_rating
     position ||= POSITIONS[role].sample
 
     person_params = {
@@ -791,8 +794,9 @@ class PersonGenerator
       name: "#{FIRST_NAMES.sample} #{LAST_NAMES.sample}",
       position: position,
       role: role,
-      rating: generate_rating,
-      age: Random.new.rand(AGE_RANGE[role])
+      rating: rating,
+      age: Random.new.rand(AGE_RANGE[role]),
+      salary: rating * SALARY_MULTIPLIER
     }
 
     Person.create(person_params).tap do |p|
