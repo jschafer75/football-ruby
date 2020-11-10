@@ -11,25 +11,23 @@ class Person < ApplicationRecord
   after_save :update_franchise_payroll
 
   def franchise=(franchise)
-    @franchise = self.franchise
+    @old_franchise = self.franchise
     super(franchise)
   end
 
   private
 
   def update_franchise_rating
-    return if @franchise == franchise && !saved_change_to_rating?
+    return unless saved_change_to_rating? || (@old_franchise != franchise)
 
-    @franchise ||= franchise
-
-    @franchise.update_rating
+    @old_franchise&.update_rating
+    franchise&.update_rating
   end
 
   def update_franchise_payroll
-    return if @franchise == franchise && !saved_change_to_salary?
+    return unless saved_change_to_salary? || (@old_franchise != franchise)
 
-    @franchise ||= franchise
-
-    @franchise.update_payroll
+    @old_franchise&.update_payroll
+    franchise&.update_payroll
   end
 end
