@@ -1,5 +1,6 @@
 <p>Stadium: <%= @franchise.stadium.size.capitalize %></p>
 <p>Available Funds: $<%= @franchise.funds.to_s(:delimited) %>
+<p>Payroll: $<%= @franchise.payroll.to_s(:delimited) %>
 <p><%= link_to 'Roster', roster_franchise_path %></p>
 <p><%= link_to 'Schedule', schedule_franchise_path %></p>
 <p><%= link_to 'Facilities', franchise_facility_path(@franchise) %></p>

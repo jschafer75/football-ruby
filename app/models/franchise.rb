@@ -100,6 +100,11 @@ class Franchise < ApplicationRecord
     average([offense_rating, defense_rating])
   end
 
+  def update_payroll
+    self.payroll = people.map(&:salary).sum
+    save!
+  end
+
   private
 
   def average(array)

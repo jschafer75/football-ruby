@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_041142) do
+ActiveRecord::Schema.define(version: 2020_11_10_031608) do
 
   create_table "facilities", force: :cascade do |t|
     t.integer "franchise_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_041142) do
     t.integer "offense_rating", default: 0
     t.integer "defense_rating", default: 0
     t.integer "funds", default: 20000000
+    t.integer "payroll", default: 0
     t.index ["league_id"], name: "index_franchises_on_league_id"
     t.index ["user_id"], name: "index_franchises_on_user_id"
   end
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_041142) do
     t.integer "franchise_id"
     t.integer "rating"
     t.integer "age"
+    t.integer "salary", default: 0
     t.index ["franchise_id"], name: "index_people_on_franchise_id"
   end
 
@@ -107,9 +109,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_041142) do
     t.boolean "superadmin_role", default: false
     t.boolean "supervisor_role", default: false
     t.boolean "user_role", default: true
-    t.integer "franchise_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["franchise_id"], name: "index_users_on_franchise_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -118,5 +118,4 @@ ActiveRecord::Schema.define(version: 2020_11_09_041142) do
   add_foreign_key "games", "franchises", column: "away_team_id"
   add_foreign_key "games", "franchises", column: "home_team_id"
   add_foreign_key "people", "franchises"
-  add_foreign_key "users", "franchises"
 end

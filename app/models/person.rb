@@ -8,6 +8,7 @@ class Person < ApplicationRecord
                        length: { minimum: 1 }
 
   after_save :update_franchise_rating
+  after_save :update_franchise_payroll
 
   def franchise=(franchise)
     @franchise = self.franchise
@@ -22,5 +23,13 @@ class Person < ApplicationRecord
     @franchise ||= franchise
 
     @franchise.update_rating
+  end
+
+  def update_franchise_payroll
+    return if @franchise == franchise && !saved_change_to_salary?
+
+    @franchise ||= franchise
+
+    @franchise.update_payroll
   end
 end
