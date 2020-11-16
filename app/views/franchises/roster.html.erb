@@ -1,21 +1,37 @@
 <h2>Coaches</h2>
 <table>
+  <th>
+    <td>Position</td>
+    <td>Rating</td>
+    <td>Age</td>
+    <td>Salary</td>
+  </th>
   <% @coaches.each do |coach| %>
     <tr>
       <td><%= link_to "#{coach.name}", franchise_person_path(@franchise, coach) %></td>
       <td><%= coach.position %></td>
       <td><%= coach.rating %></td>
+      <td><%= coach.age %></td>
+      <td><%= coach.salary.to_s(:delimited) %></td>
     </tr>
   <% end %>
 </table>
 <p><%= link_to 'Hire a Coach', available_franchise_people_path(@franchise, role: 'coach') %></p>
 <h2>Players</h2>
 <table>
+  <th>
+    <td>Position</td>
+    <td>Rating</td>
+    <td>Age</td>
+    <td>Salary</td>
+  </th>
   <% @players.each do |player| %>
     <tr>
       <td><%= link_to "#{player.name}", franchise_person_path(@franchise, player) %></td>
       <td><%= player.position %></td>
       <td><%= player.rating %></td>
+      <td><%= player.age %></td>
+      <td><%= player.salary.to_s(:delimited) %></td>
     </tr>
   <% end %>
 </table>
