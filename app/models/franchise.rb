@@ -101,7 +101,7 @@ class Franchise < ApplicationRecord
   end
 
   def update_payroll
-    self.payroll = people.map(&:salary).sum
+    self.payroll = people.all.map(&:salary).sum
     save!
   end
 

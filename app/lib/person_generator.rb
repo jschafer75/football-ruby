@@ -783,7 +783,7 @@ class PersonGenerator
   AGE_RANGE = { 'player' => 21..35,
                 'coach' => 35..60 }.freeze
 
-  SALARY_MULTIPLIER = 300_000
+  MAX_SALARY = 30_000_000
 
   def self.create_person(role = 'player', franchise = nil, position = nil)
     rating = generate_rating
@@ -796,17 +796,20 @@ class PersonGenerator
       role: role,
       rating: rating,
       age: Random.new.rand(AGE_RANGE[role]),
-      salary: rating * SALARY_MULTIPLIER
+      salary: generate_salary(rating)
     }
 
-    Person.create(person_params).tap do |p|
-      p.franchise.update_rating if franchise
-    end
+    Person.create(person_params)
   end
 
   def self.generate_rating
     @rating_generator ||= Rubystats::BetaDistribution.new(7, 3)
     @rating_generator.icdf(rand) * 100
+  end
+
+  def self.generate_salary(rating)
+    @salary_generator ||= Rubystats::ExponentialDistribution.new(1)
+    MAX_SALARY * @salary_generator.pdf(10.0 - rating / 10.0)
   end
 end
 # rubocop:enable Metrics/ClassLength

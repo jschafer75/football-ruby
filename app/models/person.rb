@@ -18,16 +18,12 @@ class Person < ApplicationRecord
   private
 
   def update_franchise_rating
-    return unless saved_change_to_rating? || (@old_franchise != franchise)
-
     @old_franchise&.update_rating
-    franchise&.update_rating
+    franchise&.update_rating if @old_franchise != franchise
   end
 
   def update_franchise_payroll
-    return unless saved_change_to_salary? || (@old_franchise != franchise)
-
     @old_franchise&.update_payroll
-    franchise&.update_payroll
+    franchise&.update_payroll if @old_franchise != franchise
   end
 end
