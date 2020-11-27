@@ -29,7 +29,11 @@ Rails.application.routes.draw do
         post 'build_stadium'
       end
     end
-    resources :facilities
+    resources :facilities do
+      member do
+        post 'upgrade'
+      end
+    end
     member do
       post 'fill_team'
       get 'roster'

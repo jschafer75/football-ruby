@@ -1,4 +1,5 @@
 <footer style="background-color:lightgray;">
+  <%= link_to 'Back', :back %><br>
   <% if current_user %>
     <p><%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %></p>
   <% end %>
