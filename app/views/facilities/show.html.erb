@@ -1,49 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <table>
-  <tr>
-    <td>Medical</td>
-    <td><%= @facility.medical.capitalize %></td>
-    <td>Upgrade</td>
-  </tr>
-  <tr>
-    <td>Practice</td>
-    <td><%= @facility.practice.capitalize %></td>
-    <td>Upgrade</td>
-  </tr>
-  <tr>
-    <td>Scouting</td>
-    <td><%= @facility.scouting.capitalize %></td>
-    <td>Upgrade</td>
-  </tr>
-  <tr>
-    <td>Meeting</td>
-    <td><%= @facility.meeting.capitalize %></td>
-    <td>Upgrade</td>
-  </tr>
-  <tr>
-    <td>Research</td>
-    <td><%= @facility.research.capitalize %></td>
-    <td>Upgrade</td>
-  </tr>
-  <tr>
-    <td>Technology</td>
-    <td><%= @facility.technology.capitalize %></td>
-    <td>Upgrade</td>
-  </tr>
-  <tr>
-    <td>Locker Room</td>
-    <td><%= @facility.locker.capitalize %></td>
-    <td>Upgrade</td>
-  </tr>
-  <tr>
-    <td>Dining</td>
-    <td><%= @facility.dining.capitalize %></td>
-    <td>Upgrade</td>
-  </tr>
-  <tr>
-    <td>Espionage</td>
-    <td><%= @facility.espionage.capitalize %></td>
-    <td>Upgrade</td>
-  </tr>
+  <% Facility::TYPES.each do |type| %>
+    <tr>
+      <td><%= type.capitalize %></td>
+      <td><%= @facility[type] %></td>
+      <td><%= link_to 'Upgrade', upgrade_franchise_facility_path(upgrading: type), method: :post %></td>
+    </tr>
+  <% end %>
 </table>

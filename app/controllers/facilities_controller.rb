@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class FacilitiesController < ApplicationController
-  before_action :set_facility, only: %i[show edit update destroy]
+  before_action :set_facility, only: %i[show edit update destroy upgrade]
+  before_action :set_franchise, only: %i[show edit update destroy upgrade]
   skip_before_action :authenticate_user!, only: [:index]
 
   # GET /facilities
@@ -12,9 +13,7 @@ class FacilitiesController < ApplicationController
 
   # GET /facilities/1
   # GET /facilities/1.json
-  def show
-    @franchise = Franchise.find(params[:franchise_id])
-  end
+  def show; end
 
   # GET /facilities/new
   def new
@@ -64,11 +63,29 @@ class FacilitiesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /facilities/1/upgrade
+  # PATCH/PUT /facilities/1/upgrade.json
+  def upgrade
+    @facility.upgrade(params[:upgrading].to_sym)
+
+    respond_to do |format|
+      format.html do
+        redirect_to [@franchise, @facility],
+                    notice: "#{params[:upgrading].capitalize} was successfully upgraded."
+      end
+      format.json { render :show, status: :ok, location: [@franchise, @facility] }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_facility
     @facility = Facility.find(params[:id])
+  end
+
+  def set_franchise
+    @franchise = Franchise.find(params[:franchise_id])
   end
 
   # Only allow a list of trusted parameters through.
