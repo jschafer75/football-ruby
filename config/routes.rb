@@ -25,6 +25,9 @@ Rails.application.routes.draw do
       end
     end
     resources :stadia do
+      member do
+        post 'upgrade'
+      end
       collection do
         post 'build_stadium'
       end

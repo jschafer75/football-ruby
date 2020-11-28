@@ -3,13 +3,24 @@
 class Stadium < ApplicationRecord
   belongs_to :franchise
 
-  enum size: %i[none tiny small medium large extra_large], _prefix: true
+  COST_TO_UPGRADE = [
+    10_000,   # 1
+    30_000,   # 2
+    150_000,  # 3
+    500_000,  # 4
+    1_000_000 # 5
+  ].freeze
 
-  COST_TO_UPGRADE = {
-    tiny: 10_000,
-    small: 30_000,
-    medium: 150_000,
-    large: 500_000,
-    extra_large: 1_000_000
-  }.freeze
+  MAX_LEVEL = 5
+
+  def upgrade
+    return unless size < MAX_LEVEL
+
+    ActiveRecord::Base.transaction do
+      franchise.funds -= COST_TO_UPGRADE[size]
+      franchise.save!
+      self.size += 1
+      save!
+    end
+  end
 end
