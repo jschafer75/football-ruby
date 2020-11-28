@@ -5,7 +5,13 @@
     <tr>
       <td><%= type.capitalize %></td>
       <td><%= @facility[type] %></td>
-      <td><%= link_to 'Upgrade', upgrade_franchise_facility_path(upgrading: type), method: :post %></td>
+      <td>
+        <% if @facility[type] < Facility::MAX_LEVEL %>
+          <%= link_to 'Upgrade', upgrade_franchise_facility_path(upgrading: type), method: :post %>
+        <% else %>
+          MAX LEVEL
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

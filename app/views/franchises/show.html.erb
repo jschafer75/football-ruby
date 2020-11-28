@@ -1,4 +1,10 @@
-<p>Stadium: <%= @franchise.stadium.size.capitalize %></p>
+<p>Stadium: <%= @franchise.stadium.size %>
+<% if @franchise.stadium.size < Stadium::MAX_LEVEL %>
+  (<%= link_to 'Upgrade', upgrade_franchise_stadium_path(@franchise), method: :post %>)
+<% else %>
+  MAX LEVEL
+<% end %> 
+</p>
 <p>Available Funds: $<%= @franchise.funds.to_s(:delimited) %>
 <p>Payroll: $<%= @franchise.payroll.to_s(:delimited) %>
 <p><%= link_to 'Roster', roster_franchise_path %></p>
