@@ -9,7 +9,7 @@ class League < ApplicationRecord
     center = franchises.first
     top = franchises[games_per_week]
     left = franchises[1..(games_per_week - 1)]
-    right = franchises[(games_per_week + 1)..-1]
+    right = franchises[(games_per_week + 1)..]
 
     loop_round_robin_wheel(center, top, left, right)
   end
