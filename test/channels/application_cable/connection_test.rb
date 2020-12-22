@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# rubocop:disable Lint/EmptyClass
 class ApplicationCable < ActionCable::Connection::TestCase
   class ConnectionTest
     # test "connects with cookies" do
@@ -13,3 +14,4 @@ class ApplicationCable < ActionCable::Connection::TestCase
     # end
   end
 end
+# rubocop:enable Lint/EmptyClass
