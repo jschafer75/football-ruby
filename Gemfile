@@ -29,6 +29,8 @@ gem 'devise'
 gem 'cancancan'
 # Use rubystats for random numbers
 gem 'rubystats'
+# Use High Voltage for static pages
+gem 'high_voltage', '~> 3.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

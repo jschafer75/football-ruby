@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class Franchise < ApplicationRecord
   has_many :people
   has_many :games
@@ -13,14 +14,42 @@ class Franchise < ApplicationRecord
                      length: { minimum: 2 }
 
   after_initialize do
-    if new_record?
-      fill_players
-      fill_coaches
-      generate_infrastructure
-    end
+    generate_infrastructure if new_record?
   end
 
-  PLAYER_DEFAULTS = {
+  STREET_PLAYERS = {
+    'QB' => 1,
+    'RB' => 1,
+    'WR' => 1,
+    'OL' => 1,
+    'DL' => 1,
+    'LB' => 1,
+    'CB' => 1
+  }.freeze
+
+  STREET_COACHES = {
+    'HC' => 1
+  }.freeze
+
+  ARENA_PLAYERS = {
+    'QB' => 1,
+    'RB' => 1,
+    'TE' => 1,
+    'WR' => 1,
+    'OL' => 1,
+    'DL' => 1,
+    'LB' => 2,
+    'CB' => 1,
+    'K' => 1
+  }.freeze
+
+  ARENA_COACHES = {
+    'HC' => 1,
+    'OC' => 1,
+    'DC' => 1
+  }.freeze
+
+  GRIDIRON_PLAYERS = {
     'QB' => 1,
     'RB' => 2,
     'TE' => 1,
@@ -34,7 +63,7 @@ class Franchise < ApplicationRecord
     'P' => 1
   }.freeze
 
-  COACH_DEFAULTS = {
+  GRIDIRON_COACHES = {
     'HC' => 1,
     'OC' => 1,
     'DC' => 1
@@ -55,17 +84,44 @@ class Franchise < ApplicationRecord
     "#{city} #{mascot}"
   end
 
-  def fill_players
-    PLAYER_DEFAULTS.each_key do |position|
-      (PLAYER_DEFAULTS[position] - players.where(position: position).count).times do
+  def self.new_street_franchise(franchise_params)
+    franchise = Franchise.new(franchise_params)
+    franchise.fill_players(STREET_PLAYERS)
+    franchise.fill_coaches(STREET_COACHES)
+    franchise.save
+
+    franchise
+  end
+
+  def self.new_arena_franchise(franchise_params)
+    franchise = Franchise.new(franchise_params)
+    franchise.fill_players(ARENA_PLAYERS)
+    franchise.fill_coaches(ARENA_COACHES)
+    franchise.save
+
+    franchise
+  end
+
+  def self.new_gridiron_franchise(franchise_params)
+    franchise = Franchise.new(franchise_params)
+    franchise.fill_players(GRIDIRON_PLAYERS)
+    franchise.fill_coaches(GRIDIRON_COACHES)
+    franchise.save
+
+    franchise
+  end
+
+  def fill_players(player_set)
+    player_set.each_key do |position|
+      (player_set[position] - players.where(position: position).count).times do
         PersonGenerator.create_person('player', self, position)
       end
     end
   end
 
-  def fill_coaches
-    COACH_DEFAULTS.each_key do |position|
-      (COACH_DEFAULTS[position] - coaches.where(position: position).count).times do
+  def fill_coaches(coach_set)
+    coach_set.each_key do |position|
+      (coach_set[position] - coaches.where(position: position).count).times do
         PersonGenerator.create_person('coach', self, position)
       end
     end
@@ -113,3 +169,4 @@ class Franchise < ApplicationRecord
     array.sum / array.size
   end
 end
+# rubocop:enable Metrics/ClassLength

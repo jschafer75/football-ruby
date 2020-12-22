@@ -1,0 +1,15 @@
+<h1>Jumping In</h1>
+<hr>
+<h3>
+<p>It's the fourth quarter of the local 7-on-7 semifinal game.</p>
+<p>You are the quarterback captain of the team.</p>
+<p>You recruited the players, and you have led them to this point.</p>
+<p>Time to lead your team to the championship.</p>
+<%= form_for :franchise, url: start_franchises_path do |f| %>
+  Where is your team located?
+  <%= f.text_field :city %></br>
+  What is your team mascot?
+  <%= f.text_field :mascot %></br>
+  <%= f.submit "Let's GO!"%>
+<% end %>
+</h3>

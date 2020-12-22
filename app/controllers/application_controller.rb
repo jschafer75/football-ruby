@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def after_sign_in_path_for(_resource)
-    current_user.franchise ? franchise_path(current_user.franchise) : franchises_path
+    current_user.franchise ? franchise_path(current_user.franchise) : page_path('welcome')
   end
 end

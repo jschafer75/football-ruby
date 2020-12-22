@@ -37,6 +37,9 @@ Rails.application.routes.draw do
         post 'upgrade'
       end
     end
+    collection do
+      post 'start'
+    end
     member do
       post 'fill_team'
       get 'roster'
