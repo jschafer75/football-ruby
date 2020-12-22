@@ -39,7 +39,7 @@ class PeopleController < ApplicationController
   def destroy
     @person.destroy
 
-    redirect_to [@franchise, @person, role: @role]
+    redirect_to [@franchise, @person, { role: @role }]
   end
 
   def available
