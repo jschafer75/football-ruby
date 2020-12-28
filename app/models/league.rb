@@ -4,6 +4,8 @@ class League < ApplicationRecord
   has_many :franchises
   has_many :games
 
+  enum category: { street: 0, arena: 1, gridiron: 2 }, _suffix: true
+
   def generate_schedule
     games_per_week = franchises.count / 2
     center = franchises.first
