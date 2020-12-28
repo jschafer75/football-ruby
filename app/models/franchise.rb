@@ -84,6 +84,10 @@ class Franchise < ApplicationRecord
     "#{city} #{mascot}"
   end
 
+  def self.starter_franchise(franchise_params)
+    new_street_franchise(franchise_params.merge(league: starter_league))
+  end
+
   def self.new_street_franchise(franchise_params)
     franchise = Franchise.new(franchise_params)
     franchise.fill_players(STREET_PLAYERS)
@@ -159,6 +163,10 @@ class Franchise < ApplicationRecord
   def update_payroll
     self.payroll = people.all.map(&:salary).sum
     save!
+  end
+
+  def self.starter_league
+    League.arena_category.first
   end
 
   private

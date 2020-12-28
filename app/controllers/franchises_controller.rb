@@ -96,7 +96,7 @@ class FranchisesController < ApplicationController
   end
 
   def start
-    @franchise = Franchise.new_street_franchise(franchise_params.merge(league: League.first))
+    @franchise = Franchise.starter_franchise(franchise_params)
 
     if @franchise.persisted?
       redirect_to @franchise

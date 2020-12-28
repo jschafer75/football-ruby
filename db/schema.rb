@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_10_031608) do
+ActiveRecord::Schema.define(version: 2020_12_22_180016) do
 
   create_table "facilities", force: :cascade do |t|
     t.integer "franchise_id"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 2020_11_10_031608) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "year", default: 2020
     t.integer "week", default: 1
+    t.integer "category", default: 0, null: false
+    t.index ["category"], name: "index_leagues_on_category"
   end
 
   create_table "people", force: :cascade do |t|
