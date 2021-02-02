@@ -69,8 +69,14 @@ class Franchise < ApplicationRecord
     'DC' => 1
   }.freeze
 
-  OFFENSE_POITIONS = %w[QB RB TE WR OL].freeze
-  DEFENSE_POITIONS = %w[DL LB S CB].freeze
+  OFFENSE_POSITIONS = %w[QB RB TE WR OL].freeze
+  DEFENSE_POSITIONS = %w[DL LB S CB].freeze
+
+  OFFENSE_RUSHING_POSITIONS = %w[RB OL].freeze
+  DEFENSE_RUSHING_POSITIONS = %w[DL LB].freeze
+
+  OFFENSE_PASSING_POSITIONS = %w[QB TE WR].freeze
+  DEFENSE_PASSING_POSITIONS = %w[S CB].freeze
 
   def coaches
     people.where(role: 'coach')
@@ -149,11 +155,27 @@ class Franchise < ApplicationRecord
   end
 
   def update_rating
-    offense_ratings = players.select { |p| Franchise::OFFENSE_POITIONS.include?(p.position) }.collect(&:rating)
-    defense_ratings = players.select { |p| Franchise::DEFENSE_POITIONS.include?(p.position) }.collect(&:rating)
-    self.offense_rating = average(offense_ratings)
-    self.defense_rating = average(defense_ratings)
+    update_offense_rating
+    update_defense_rating
+  end
+
+  def update_offense_rating
+    self.rush_offense_rating = calculate_rating(Franchise::OFFENSE_RUSHING_POSITIONS)
+    self.pass_offense_rating = calculate_rating(Franchise::OFFENSE_PASSING_POSITIONS)
+    self.offense_rating = average([rush_offense_rating, pass_offense_rating])
     save!
+  end
+
+  def update_defense_rating
+    self.rush_defense_rating = calculate_rating(Franchise::DEFENSE_RUSHING_POSITIONS)
+    self.pass_defense_rating = calculate_rating(Franchise::DEFENSE_PASSING_POSITIONS)
+    self.defense_rating = average([rush_defense_rating, pass_defense_rating])
+    save!
+  end
+
+  def calculate_rating(positions)
+    ratings = players.select { |p| positions.include?(p.position) }.collect(&:rating)
+    average(ratings)
   end
 
   def rating
