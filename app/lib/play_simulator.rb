@@ -29,7 +29,7 @@ class PlaySimulator
   end
 
   def execute(play_type = 'run', play_length = 'short')
-    base_yards = PLAY_LENGTHS[play_type][play_length] * @offense.offense_rating / @defense.defense_rating
+    base_yards = PLAY_LENGTHS[play_type][play_length] * offense_rating(play_type) / defense_rating(play_type)
 
     yards_gained = (base_yards * @distribution.icdf(rand) / 0.7).floor
 
@@ -37,6 +37,22 @@ class PlaySimulator
       0
     else
       yards_gained
+    end
+  end
+
+  def offense_rating(play_type)
+    if play_type == 'run'
+      @offense.rush_offense_rating
+    else
+      @offense.pass_offense_rating
+    end
+  end
+
+  def defense_rating(play_type)
+    if play_type == 'run'
+      @defense.rush_defense_rating
+    else
+      @defense.pass_defense_rating
     end
   end
 end
