@@ -80,7 +80,7 @@ class LeaguesController < ApplicationController
   def play_week
     @league.play_week
     respond_to do |format|
-      format.html { render :schedule }
+      format.html { redirect_to schedule_league_url }
       format.json { render :show, status: :ok, location: @league }
     end
   end
@@ -90,7 +90,7 @@ class LeaguesController < ApplicationController
   def advance_week
     @league.advance_week
     respond_to do |format|
-      format.html { render :schedule }
+      format.html { redirect_to schedule_league_url }
       format.json { render :show, status: :ok, location: @league }
     end
   end

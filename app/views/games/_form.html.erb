@@ -1,0 +1,30 @@
+<%= form_with model: @game, local: true do |form| %>
+
+  <% if @game.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@game.errors.count, "error") %> prohibited
+        this game from being saved:
+      </h2>
+      <ul>
+        <% @game.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :home_team_id %>
+    <%= form.collection_select(:home_team_id, Franchise.all, :id, :full_name) %>
+  </p>
+
+  <p>
+    <%= form.label :away_team_id %>
+    <%= form.collection_select(:away_team_id, Franchise.all, :id, :full_name) %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
