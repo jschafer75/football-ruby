@@ -9,6 +9,10 @@ class Game < ApplicationRecord
   LOSING_FUNDS = 5_000_000
   TIE_FUNDS = (WINNING_FUNDS + LOSING_FUNDS) / 2
 
+  def with_league
+    self.league = home_team.league
+  end
+
   def play
     score_generator = Rubystats::NormalDistribution.new(23.0, 7.0)
 

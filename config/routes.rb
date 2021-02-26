@@ -12,6 +12,12 @@ Rails.application.routes.draw do
       post 'advance_week'
     end
   end
+
+  resources :games do
+    member do
+      post 'play'
+    end
+  end
   
   resources :franchises do
     resources :people do

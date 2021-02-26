@@ -1,0 +1,13 @@
+<table>
+  <tr>
+    <td><strong><%= @game.away_team.full_name.upcase %></strong></td>
+    <td><%= @game.away_score %></td>
+  </tr>
+  <tr>
+    <td><strong><%= @game.home_team.full_name.upcase %></strong></td>
+    <td><%= @game.home_score %></td>
+  </tr>
+<% if @game.away_score.nil? %>
+  <tr><td><%= link_to 'PLAY', play_game_path, method: :post %></td></tr>
+<% end %>
+</table>
