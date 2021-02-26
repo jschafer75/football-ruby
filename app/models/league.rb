@@ -41,6 +41,11 @@ class League < ApplicationRecord
     end
   end
 
+  def new_season
+    update_attributes(year: self.year += 1, week: 1)
+    generate_schedule
+  end
+
   private
 
   def loop_round_robin_wheel(center, top, left, right)
