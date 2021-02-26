@@ -16,5 +16,7 @@
   <li><%= link_to "Play Week", play_week_league_path, method: :post %></li>
 <% if @league.week_schedule(@league.week + 1).present? %>
   <li><%= link_to "Advance Week", advance_week_league_path, method: :post %></li>
+<% else %>
+  <li><%= link_to "New Season", new_season_league_path, method: :post %></li>
 <% end %>
 </ul>

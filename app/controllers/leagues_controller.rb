@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LeaguesController < ApplicationController
-  before_action :set_league, only: %i[show edit update destroy generate_schedule schedule play_week advance_week]
+  before_action :fetch_league
 
   # GET /leagues
   # GET /leagues.json
@@ -95,11 +95,21 @@ class LeaguesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /leagues/1/new_season
+  # PATCH/PUT /leagues/1/new_season.json
+  def new_season
+    @league.new_season
+    respond_to do |format|
+      format.html { redirect_to schedule_league_url }
+      format.json { render :show, status: :ok, location: @league }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_league
-    @league = League.find(params[:id])
+  def fetch_league
+    @league = League.find(params[:id]) if params[:id]
   end
 
   # Only allow a list of trusted parameters through.

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'schedule'
       post 'play_week'
       post 'advance_week'
+      post 'new_season'
     end
   end
 
