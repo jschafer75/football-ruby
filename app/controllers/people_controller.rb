@@ -10,8 +10,7 @@ class PeopleController < ApplicationController
   end
 
   def create
-    @person = Person.new(person_params)
-    @person.rating = PersonGenerator.generate_rating
+    @person = PersonGenerator.create_person(@role, @franchise, person_params[:position])
 
     if @person.save
       redirect_to [@franchise, @person]
