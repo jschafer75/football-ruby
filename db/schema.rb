@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_02_044632) do
+ActiveRecord::Schema.define(version: 2021_03_08_041511) do
 
   create_table "facilities", force: :cascade do |t|
     t.integer "franchise_id"
@@ -61,13 +61,19 @@ ActiveRecord::Schema.define(version: 2021_02_02_044632) do
   create_table "games", force: :cascade do |t|
     t.integer "home_team_id"
     t.integer "away_team_id"
-    t.integer "home_score"
-    t.integer "away_score"
+    t.integer "home_score", default: 0
+    t.integer "away_score", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "year"
     t.integer "week"
     t.integer "league_id"
+    t.boolean "complete", default: false
+    t.integer "yard", default: 35
+    t.integer "down", default: 1
+    t.integer "distance", default: 10
+    t.integer "quarter", default: 1
+    t.integer "time_remaining", default: 900
     t.index ["away_team_id"], name: "index_games_on_away_team_id"
     t.index ["home_team_id"], name: "index_games_on_home_team_id"
     t.index ["league_id"], name: "index_games_on_league_id"
